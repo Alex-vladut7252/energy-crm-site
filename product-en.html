@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Energy CRM — Asset management & automated trading platform</title>
+<link rel="shortcut icon" href="assets/favicon.ico">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=Manrope:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  --ink-0:#04060c;--ink-1:#070a13;--ink-2:#0c1120;--ink-3:#131a2e;--ink-4:#1d2742;
+  --line:rgba(255,255,255,.08);--line-strong:rgba(255,255,255,.16);
+  --text-1:#f4f6fb;--text-2:rgba(244,246,251,.74);--text-3:rgba(244,246,251,.5);--text-4:rgba(244,246,251,.34);
+  --blue:#4d8bff;--blue-glow:rgba(77,139,255,.45);--teal:#22d3a0;--amber:#f7b924;--rose:#ff5d6c;
+  --display:'Sora','Inter',system-ui,sans-serif;--body:'Manrope',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,monospace;
+  --maxw:1180px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--body);background:var(--ink-0);color:var(--text-2);-webkit-font-smoothing:antialiased;line-height:1.55;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1px);background-size:32px 32px;opacity:.5;pointer-events:none;z-index:0;}
+a{color:inherit;text-decoration:none;}
+strong{color:var(--text-1);font-weight:700;}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(1.2rem,4vw,2.5rem);}
+.grad{background:linear-gradient(100deg,var(--blue),var(--teal));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--teal);border:1px solid var(--line);border-radius:999px;padding:.34rem .82rem;background:rgba(34,211,160,.06);}
+.sec{position:relative;z-index:1;padding:clamp(3.5rem,8vh,6rem) 0;}
+.sec-h{text-align:center;max-width:62ch;margin:0 auto 2.6rem;}
+.sec-h .k{font-family:var(--mono);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--blue);}
+.sec-h h2{font-family:var(--display);font-weight:700;font-size:clamp(1.7rem,3.6vw,2.5rem);color:var(--text-1);margin:.6rem 0 .6rem;letter-spacing:-.02em;line-height:1.1;}
+.sec-h p{font-size:1.05rem;color:var(--text-2);}
+
+/* NAV */
+.nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(4,6,12,.72);border-bottom:1px solid var(--line);}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:64px;}
+.nav-logo{display:flex;align-items:center;gap:.6rem;}
+.nav-logo img{height:24px;}
+.nav-links{display:flex;align-items:center;gap:1.5rem;}
+.nav-links a{font-size:.86rem;font-weight:600;color:var(--text-2);transition:color .15s;}
+.nav-links a:hover{color:var(--text-1);}
+.nav-right{display:flex;align-items:center;gap:.9rem;}
+.lang{display:flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;font-family:var(--mono);font-size:.72rem;}
+.lang a{padding:.32rem .6rem;color:var(--text-3);}
+.lang a.on{background:rgba(77,139,255,.18);color:var(--text-1);}
+.btn{display:inline-flex;align-items:center;gap:.45rem;font-weight:700;font-size:.86rem;border-radius:9px;padding:.6rem 1.05rem;transition:all .18s;border:1px solid transparent;cursor:pointer;}
+.btn-p{background:var(--text-1);color:var(--ink-0);}
+.btn-p:hover{box-shadow:0 8px 28px rgba(244,246,251,.18);transform:translateY(-1px);}
+.btn-g{border-color:var(--line-strong);color:var(--text-1);background:rgba(255,255,255,.02);}
+.btn-g:hover{border-color:rgba(77,139,255,.5);background:rgba(77,139,255,.08);}
+@media(max-width:860px){.nav-links{display:none;}}
+
+/* HERO */
+.hero{position:relative;z-index:1;padding:clamp(3rem,7vh,5.5rem) 0 clamp(2.5rem,5vh,4rem);overflow:hidden;}
+.hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 70% 10%,rgba(77,139,255,.16),transparent 60%),radial-gradient(ellipse 50% 50% at 10% 90%,rgba(34,211,160,.1),transparent 60%);pointer-events:none;z-index:-1;}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:2.5rem;align-items:center;}
+.hero .kick{font-family:var(--display);font-weight:700;font-size:clamp(1rem,2vw,1.3rem);color:var(--text-2);margin:1rem 0 .2rem;}
+.hero h1{font-family:var(--display);font-weight:800;font-size:clamp(2.3rem,4.6vw,3.5rem);line-height:1.04;color:var(--text-1);letter-spacing:-.025em;margin-bottom:.9rem;}
+.hero .sub{font-size:1.1rem;color:var(--text-2);max-width:54ch;margin-bottom:1.5rem;}
+.hero-cta{display:flex;gap:.7rem;flex-wrap:wrap;margin-bottom:1.3rem;}
+.hero-trust{display:flex;align-items:center;gap:.5rem;font-size:.8rem;color:var(--text-3);}
+.hero-trust i{color:var(--teal);}
+.console{background:linear-gradient(180deg,rgba(19,26,46,.9),rgba(7,10,19,.9));border:1px solid var(--line-strong);border-radius:18px;overflow:hidden;box-shadow:0 30px 70px rgba(0,0,0,.5);}
+.console-top{display:flex;align-items:center;justify-content:space-between;padding:.7rem 1rem;background:rgba(255,255,255,.03);border-bottom:1px solid var(--line);}
+.console-top .t{font-family:var(--mono);font-size:.7rem;letter-spacing:.1em;color:var(--text-3);text-transform:uppercase;}
+.live{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--mono);font-size:.66rem;color:var(--teal);text-transform:uppercase;letter-spacing:.1em;}
+.live .pd{width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 0 rgba(34,211,160,.6);animation:pulse 1.8s infinite;}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(34,211,160,.55);}70%{box-shadow:0 0 0 9px rgba(34,211,160,0);}100%{box-shadow:0 0 0 0 rgba(34,211,160,0);}}
+.console-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);}
+.metric{background:var(--ink-1);padding:1rem 1.1rem;}
+.metric .l{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);margin-bottom:.3rem;display:flex;align-items:center;gap:.35rem;}
+.metric .l i{color:var(--blue);}
+.metric .v{font-family:var(--display);font-weight:700;font-size:1.5rem;color:var(--text-1);font-variant-numeric:tabular-nums;}
+.metric .v small{font-size:.8rem;color:var(--text-3);font-weight:500;}
+.console-foot{display:flex;align-items:center;justify-content:space-between;padding:.7rem 1.1rem;border-top:1px solid var(--line);font-family:var(--mono);font-size:.66rem;color:var(--text-3);}
+.console-foot .ab{color:var(--teal);}
+.demo-tag{font-family:var(--mono);font-size:.6rem;color:var(--text-4);text-align:right;margin-top:.5rem;font-style:italic;}
+@media(max-width:880px){.hero-grid{grid-template-columns:1fr;}}
+
+/* TRUST */
+.trust{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(255,255,255,.012);position:relative;z-index:1;}
+.trust-in{display:flex;align-items:center;justify-content:center;gap:clamp(.7rem,2.1vw,1.6rem);flex-wrap:wrap;padding:1.1rem 0;}
+.trust .lab{font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-4);}
+.tlogo{background:#fff;border-radius:8px;height:38px;display:flex;align-items:center;justify-content:center;padding:6px 13px;}
+.tlogo img{max-height:24px;max-width:130px;width:auto;object-fit:contain;display:block;}
+
+/* JOURNEY */
+.journey{position:relative;z-index:1;}
+.chain-rail{position:sticky;top:64px;z-index:20;background:rgba(4,6,12,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:.7rem 0;}
+.chain{display:flex;gap:.4rem;justify-content:center;flex-wrap:wrap;}
+.cstep{display:flex;align-items:center;gap:.5rem;padding:.4rem .7rem;border:1px solid var(--line);border-radius:999px;cursor:pointer;transition:all .2s;font-size:.8rem;color:var(--text-3);}
+.cstep i{font-size:.95rem;}
+.cstep .num{font-family:var(--mono);font-size:.6rem;color:var(--text-4);}
+.cstep.on{border-color:rgba(34,211,160,.5);background:rgba(34,211,160,.1);color:var(--text-1);}
+.cstep.on i{color:var(--teal);}
+.cstep .arr{color:var(--text-4);margin-left:.1rem;}
+.j-body{display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start;}
+.j-visual{position:sticky;top:140px;}
+.jvwrap{position:relative;height:430px;}
+.jv{position:absolute;inset:0;display:flex;align-items:center;opacity:0;transform:translateY(12px) scale(.985);transition:opacity .45s ease,transform .45s ease;pointer-events:none;}
+.jv.on{opacity:1;transform:none;pointer-events:auto;}
+.demo-note{margin-top:.7rem;font-size:.72rem;color:var(--text-4);font-style:italic;display:flex;gap:.4rem;align-items:center;}
+.demo-note i{color:var(--amber);font-style:normal;}
+.j-steps{display:flex;flex-direction:column;gap:1.4rem;}
+.jstep{border:1px solid var(--line);border-left:3px solid var(--line);border-radius:14px;padding:1.4rem 1.5rem;background:linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,.008));transition:all .3s;min-height:58vh;display:flex;flex-direction:column;justify-content:center;}
+.jstep.on{border-left-color:var(--teal);background:linear-gradient(180deg,rgba(34,211,160,.06),rgba(255,255,255,.01));}
+.jstep .num{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;color:var(--teal);text-transform:uppercase;}
+.jstep h3{font-family:var(--display);font-weight:700;font-size:1.5rem;color:var(--text-1);margin:.4rem 0 .5rem;}
+.jstep p{font-size:.98rem;color:var(--text-2);margin-bottom:.9rem;}
+.jstep ul{list-style:none;display:flex;flex-direction:column;gap:.4rem;}
+.jstep li{position:relative;padding-left:1.25rem;font-size:.9rem;color:var(--text-2);}
+.jstep li::before{content:'';position:absolute;left:0;top:.5em;width:7px;height:7px;border-radius:2px;background:var(--blue);}
+.jstep .badge{margin-top:1rem;display:inline-flex;align-items:center;gap:.45rem;font-size:.82rem;font-weight:600;color:var(--text-1);background:rgba(77,139,255,.12);border:1px solid rgba(77,139,255,.3);border-radius:8px;padding:.45rem .75rem;align-self:flex-start;}
+.jstep .badge i{color:var(--teal);}
+@media(max-width:880px){.j-body{grid-template-columns:1fr;}.j-visual{position:relative;top:0;}.jstep{min-height:auto;}.chain-rail{position:static;}.jvwrap{min-height:460px;}}
+
+/* APP-LIKE VISUAL COMPONENTS (mirror the real Energy CRM screens) */
+.appcard{width:100%;max-height:100%;border:1px solid var(--line-strong);border-radius:14px;overflow:hidden;background:linear-gradient(180deg,rgba(19,26,46,.72),rgba(7,10,19,.66));box-shadow:0 24px 60px rgba(0,0,0,.5);display:flex;flex-direction:column;}
+.appbar{display:flex;align-items:center;justify-content:space-between;padding:.7rem 1rem;background:rgba(255,255,255,.03);border-bottom:1px solid var(--line);}
+.appbar .ttl{display:flex;align-items:center;gap:.5rem;font-family:var(--display);font-weight:600;font-size:.9rem;color:var(--text-1);}
+.appbar .ttl i{color:var(--blue);}
+.abdg{font-family:var(--mono);font-size:.58rem;letter-spacing:.07em;text-transform:uppercase;color:var(--teal);border:1px solid rgba(34,211,160,.3);border-radius:999px;padding:.2rem .55rem;display:inline-flex;align-items:center;gap:.35rem;}
+.abdg.amber{color:var(--amber);border-color:rgba(247,185,36,.3);}
+.abdg .pd{width:7px;height:7px;border-radius:50%;background:var(--teal);animation:pulse 1.8s infinite;}
+.appbody{padding:1.05rem 1.1rem;display:flex;flex-direction:column;gap:.85rem;overflow:hidden;}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:.55rem;}
+.kpi{border:1px solid var(--line);border-radius:10px;padding:.6rem .7rem;background:rgba(255,255,255,.02);}
+.kpi .l{font-family:var(--mono);font-size:.52rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text-3);margin-bottom:.25rem;}
+.kpi .v{font-family:var(--display);font-weight:700;font-size:1.18rem;color:var(--text-1);line-height:1;}
+.kpi .v small{font-size:.66rem;color:var(--text-3);font-weight:500;}
+.kpi .s{font-size:.62rem;margin-top:.2rem;color:var(--teal);}
+.kpi .s.dn{color:var(--rose);}
+.kpi .v.tl{color:var(--teal);}.kpi .v.rs{color:var(--rose);}.kpi .v.bl{color:var(--blue);}
+.strip{position:relative;height:148px;display:flex;align-items:flex-end;gap:2px;padding-top:14px;border-bottom:1px solid var(--line);}
+.strip .bar{flex:1;background:linear-gradient(180deg,rgba(77,139,255,.6),rgba(77,139,255,.1));border-radius:2px 2px 0 0;min-height:2px;}
+.strip .bar.fill{background:linear-gradient(180deg,var(--teal),rgba(34,211,160,.2));}
+.strip .now{position:absolute;top:0;bottom:0;width:2px;background:var(--rose);z-index:3;}
+.strip .now::after{content:'NOW';position:absolute;top:-1px;left:3px;font-family:var(--mono);font-size:.5rem;color:var(--rose);}
+.strip-x{display:flex;justify-content:space-between;font-family:var(--mono);font-size:.52rem;color:var(--text-4);margin-top:.2rem;}
+.strip-leg{display:flex;gap:.9rem;font-size:.64rem;color:var(--text-3);}
+.strip-leg span{display:flex;align-items:center;gap:.3rem;}
+.strip-leg i{width:12px;height:3px;border-radius:2px;display:inline-block;}
+.atbl{width:100%;border-collapse:collapse;font-size:.72rem;}
+.atbl th{font-family:var(--mono);font-size:.52rem;letter-spacing:.05em;text-transform:uppercase;color:var(--text-3);text-align:left;padding:.45rem .5rem;border-bottom:1px solid var(--line);font-weight:500;}
+.atbl td{padding:.5rem .5rem;border-bottom:1px solid var(--line);color:var(--text-2);}
+.atbl td.num{font-family:var(--mono);text-align:right;}
+.atbl tr:last-child td{border-bottom:none;}
+.atbl .strong{color:var(--text-1);font-weight:600;}
+.bdg{font-family:var(--mono);font-size:.54rem;padding:.16rem .42rem;border-radius:5px;letter-spacing:.03em;white-space:nowrap;}
+.bdg.ok{color:var(--teal);background:rgba(34,211,160,.1);border:1px solid rgba(34,211,160,.28);}
+.bdg.dr{color:var(--amber);background:rgba(247,185,36,.1);border:1px solid rgba(247,185,36,.28);}
+.bdg.sell{color:var(--teal);background:rgba(34,211,160,.08);border:1px solid rgba(34,211,160,.2);}
+.bdg.flat{color:var(--text-3);background:rgba(255,255,255,.05);border:1px solid var(--line);}
+.pos{color:var(--teal);font-family:var(--mono);}
+.muted{color:var(--text-3);}
+/* battery + pv for stage 1 */
+.asset2{display:grid;grid-template-columns:1fr 1fr;gap:.85rem;}
+.apanel{border:1px solid var(--line);border-radius:11px;padding:.85rem;background:rgba(255,255,255,.02);}
+.apanel .ah{font-family:var(--mono);font-size:.56rem;letter-spacing:.07em;text-transform:uppercase;color:var(--text-3);display:flex;align-items:center;gap:.35rem;margin-bottom:.6rem;}
+.apanel .ah i{color:var(--teal);}
+.ring{position:relative;width:104px;height:104px;margin:0 auto;}
+.ring svg{display:block;}
+.ring .lbl{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.ring .lbl .v{font-family:var(--display);font-weight:800;font-size:1.35rem;color:var(--text-1);line-height:1;}
+.ring .lbl .u{font-family:var(--mono);font-size:.52rem;letter-spacing:.1em;color:var(--text-3);text-transform:uppercase;margin-top:.15rem;}
+.bkv{display:flex;justify-content:space-between;font-size:.72rem;padding:.3rem 0;border-bottom:1px solid var(--line);}
+.bkv:last-child{border:none;}.bkv .k{color:var(--text-3);}.bkv .v{font-family:var(--mono);color:var(--text-1);}
+.bkv .v.dn{color:var(--amber);}.bkv .v.up{color:var(--teal);}
+.pv-curve{width:100%;height:74px;display:block;}
+.pv-now{font-family:var(--display);font-weight:800;font-size:1.3rem;color:var(--text-1);}
+.pv-now small{font-size:.66rem;color:var(--text-3);font-weight:500;}
+.dispatch{display:flex;gap:1.5px;margin-top:.5rem;}
+.dispatch span{flex:1;height:18px;border-radius:1px;background:rgba(255,255,255,.05);}
+.dispatch span.on{background:linear-gradient(180deg,var(--teal),rgba(34,211,160,.45));}
+.dispatch span.hi{background:linear-gradient(180deg,var(--blue),rgba(77,139,255,.45));}
+.ctrack{position:relative;height:7px;border-radius:7px;background:linear-gradient(90deg,rgba(34,211,160,.4),rgba(255,255,255,.06) 50%,rgba(247,185,36,.4));margin-top:.7rem;}
+.ctrack .knob{position:absolute;top:50%;left:34%;transform:translate(-50%,-50%);width:15px;height:15px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 4px rgba(34,211,160,.18);}
+.setn{font-size:.7rem;color:var(--text-2);margin-top:.45rem;}.setn b{color:var(--teal);}
+
+/* CALCULATOR */
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line-strong);border-radius:18px;overflow:hidden;background:linear-gradient(180deg,rgba(19,26,46,.6),rgba(7,10,19,.6));}
+.calc-in{padding:1.8rem;border-right:1px solid var(--line);}
+.calc-in h3{font-family:var(--display);font-weight:600;font-size:1.1rem;color:var(--text-1);margin-bottom:1.2rem;display:flex;align-items:center;gap:.5rem;}
+.calc-in h3 i{color:var(--blue);}
+.field{margin-bottom:1.3rem;}
+.field label{display:flex;justify-content:space-between;font-size:.84rem;color:var(--text-2);margin-bottom:.5rem;}
+.field label b{color:var(--text-1);font-family:var(--mono);}
+.field input[type=range]{width:100%;-webkit-appearance:none;height:5px;border-radius:5px;background:var(--ink-4);outline:none;}
+.field input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;border-radius:50%;background:var(--teal);cursor:pointer;box-shadow:0 0 0 4px rgba(34,211,160,.18);}
+.calc-out{padding:1.8rem;display:flex;flex-direction:column;justify-content:center;gap:1.1rem;}
+.calc-out .row{display:flex;flex-direction:column;gap:.2rem;}
+.calc-out .row .l{font-family:var(--mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-3);}
+.calc-out .big{font-family:var(--display);font-weight:800;font-size:2rem;color:var(--text-1);font-variant-numeric:tabular-nums;}
+.calc-out .big.rose{color:var(--rose);}.calc-out .big.teal{color:var(--teal);}
+.calc-out .note2{font-size:.76rem;color:var(--text-4);}
+@media(max-width:760px){.calc{grid-template-columns:1fr;}.calc-in{border-right:none;border-bottom:1px solid var(--line);}}
+
+/* CAPABILITIES */
+.cap-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+.cap{border:1px solid var(--line);border-radius:14px;padding:1.3rem 1.35rem;background:linear-gradient(180deg,rgba(255,255,255,.03),rgba(255,255,255,.008));transition:all .2s;}
+.cap:hover{border-color:rgba(77,139,255,.4);transform:translateY(-2px);}
+.cap .ic{width:42px;height:42px;border-radius:11px;display:grid;place-items:center;background:rgba(77,139,255,.12);border:1px solid rgba(77,139,255,.3);color:var(--blue);font-size:1.25rem;margin-bottom:.8rem;}
+.cap h3{font-family:var(--display);font-weight:600;font-size:1.08rem;color:var(--text-1);margin-bottom:.4rem;}
+.cap p{font-size:.86rem;color:var(--text-2);}
+@media(max-width:880px){.cap-grid{grid-template-columns:1fr;}}
+
+/* FEATURE EXPLORER */
+.fx{display:grid;grid-template-columns:336px 1fr;gap:1.3rem;align-items:start;}
+.fx-list{display:flex;flex-direction:column;gap:.5rem;}
+.fx-item{display:flex;align-items:center;gap:.8rem;text-align:left;width:100%;padding:.85rem .95rem;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.015);cursor:pointer;transition:all .2s;font-family:var(--body);}
+.fx-item .ic{width:38px;height:38px;border-radius:9px;display:grid;place-items:center;background:rgba(77,139,255,.1);border:1px solid rgba(77,139,255,.25);color:var(--blue);font-size:1.15rem;flex:none;}
+.fx-item .fx-name{display:block;font-family:var(--display);font-weight:600;font-size:.95rem;color:var(--text-1);line-height:1.2;}
+.fx-item .fx-tag{display:block;font-family:var(--mono);font-size:.56rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text-3);margin-top:.2rem;}
+.fx-item .chev{margin-left:auto;color:var(--text-4);transition:.2s;font-size:1.1rem;}
+.fx-item:hover{border-color:rgba(77,139,255,.4);background:rgba(77,139,255,.05);}
+.fx-item.on{border-color:rgba(34,211,160,.45);background:rgba(34,211,160,.08);}
+.fx-item.on .ic{background:rgba(34,211,160,.12);border-color:rgba(34,211,160,.35);color:var(--teal);}
+.fx-item.on .chev{color:var(--teal);transform:translateX(3px);}
+.fx-detail{position:relative;border:1px solid var(--line-strong);border-radius:16px;background:linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,.008));min-height:440px;overflow:hidden;}
+.fx-panel{display:none;padding:1.7rem 1.9rem;}
+.fx-panel.on{display:grid;grid-template-columns:1.08fr .92fr;gap:1.6rem;animation:fxin .4s ease;}
+@keyframes fxin{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+.fx-eyebrow{font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem;}
+.fx-h{font-family:var(--display);font-weight:700;font-size:1.45rem;color:var(--text-1);margin-bottom:.55rem;letter-spacing:-.01em;line-height:1.15;}
+.fx-pitch{font-size:.96rem;color:var(--text-2);margin-bottom:1.1rem;}
+.fx-bul{list-style:none;display:flex;flex-direction:column;gap:.55rem;margin-bottom:1.1rem;}
+.fx-bul li{position:relative;padding-left:1.6rem;font-size:.9rem;color:var(--text-2);}
+.fx-bul li i{position:absolute;left:0;top:.05em;color:var(--teal);font-size:1.05rem;}
+.fx-hi{display:flex;gap:.6rem;align-items:flex-start;background:linear-gradient(135deg,rgba(77,139,255,.12),rgba(34,211,160,.08));border:1px solid rgba(77,139,255,.25);border-radius:10px;padding:.75rem .95rem;font-size:.88rem;color:var(--text-1);margin-bottom:1.1rem;}
+.fx-hi i{color:var(--amber);font-size:1.15rem;flex:none;margin-top:.05rem;}
+.fx-stats{display:flex;gap:.5rem;flex-wrap:wrap;}
+.fx-stat{border:1px solid var(--line);border-radius:8px;padding:.45rem .7rem;background:rgba(255,255,255,.02);}
+.fx-stat .k{font-family:var(--mono);font-size:.54rem;letter-spacing:.07em;text-transform:uppercase;color:var(--text-3);}
+.fx-stat .v{font-family:var(--display);font-weight:700;font-size:1rem;color:var(--text-1);}
+.fx-vis{display:flex;align-items:center;}
+.fxv{width:100%;border:1px solid var(--line);border-radius:12px;background:rgba(7,10,19,.5);overflow:hidden;display:flex;flex-direction:column;}
+.fxv-bar{display:flex;align-items:center;justify-content:space-between;padding:.55rem .8rem;background:rgba(255,255,255,.03);border-bottom:1px solid var(--line);font-family:var(--mono);font-size:.58rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text-3);}
+.fxv-bar .l{display:flex;align-items:center;gap:.4rem;}.fxv-bar .l i{color:var(--teal);}
+.fxv-body{padding:.95rem;display:flex;flex-direction:column;justify-content:center;gap:.6rem;min-height:200px;}
+.fx-logos{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem;}
+.fx-logos .lc{background:#fff;border-radius:7px;height:42px;display:flex;align-items:center;justify-content:center;padding:5px 8px;}
+.fx-logos .lc img{max-height:24px;max-width:88%;object-fit:contain;}
+@media(max-width:880px){.fx{grid-template-columns:1fr;}.fx-panel.on{grid-template-columns:1fr;}}
+
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;}
+.stat{text-align:center;border:1px solid var(--line);border-radius:14px;padding:1.4rem 1rem;background:rgba(255,255,255,.015);}
+.stat .n{font-family:var(--display);font-weight:800;font-size:2.1rem;color:var(--text-1);letter-spacing:-.02em;}
+.stat .l{font-size:.82rem;color:var(--text-3);margin-top:.2rem;}
+@media(max-width:760px){.stats{grid-template-columns:1fr 1fr;}}
+
+/* USE CASES */
+.uc-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:.8rem;}
+.uc{border:1px solid var(--line);border-radius:13px;padding:1.1rem;text-align:center;background:rgba(255,255,255,.015);}
+.uc i{font-size:1.7rem;color:var(--teal);}
+.uc h4{font-family:var(--display);font-size:.95rem;color:var(--text-1);margin:.5rem 0 .3rem;}
+.uc p{font-size:.78rem;color:var(--text-3);}
+@media(max-width:880px){.uc-grid{grid-template-columns:1fr 1fr;}}
+
+/* WHY */
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.cmp-col{border:1px solid var(--line);border-radius:16px;padding:1.5rem 1.6rem;}
+.cmp-col.them{background:rgba(255,93,108,.04);}
+.cmp-col.us{background:rgba(34,211,160,.05);border-color:rgba(34,211,160,.3);}
+.cmp-col h3{font-family:var(--display);font-weight:700;font-size:1.15rem;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem;}
+.cmp-col.them h3{color:var(--text-2);}.cmp-col.us h3{color:var(--text-1);}
+.cmp-col ul{list-style:none;display:flex;flex-direction:column;gap:.6rem;}
+.cmp-col li{position:relative;padding-left:1.7rem;font-size:.9rem;color:var(--text-2);}
+.cmp-col li i{position:absolute;left:0;top:.15em;font-size:1.05rem;}
+.cmp-col.them li i{color:var(--rose);}.cmp-col.us li i{color:var(--teal);}
+@media(max-width:760px){.cmp{grid-template-columns:1fr;}}
+
+/* INTEGRATIONS */
+.int-shell{border:1px solid rgba(34,211,160,.3);border-radius:20px;padding:1.1rem;background:rgba(34,211,160,.025);box-shadow:0 0 50px rgba(34,211,160,.06);margin-bottom:1.4rem;}
+.exch-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.8rem;}
+.exch{border:1px solid var(--line-strong);border-radius:13px;padding:1.1rem 1.15rem;background:linear-gradient(180deg,rgba(19,26,46,.7),rgba(7,10,19,.6));display:flex;flex-direction:column;gap:.5rem;}
+.exch.on{border-color:rgba(34,211,160,.4);box-shadow:inset 0 0 22px rgba(34,211,160,.05);}
+.elogo-sm{align-self:flex-start;background:#fff;border-radius:8px;height:34px;display:flex;align-items:center;justify-content:center;padding:5px 9px;margin-bottom:.35rem;}
+.elogo-sm img{height:22px;max-width:108px;width:auto;object-fit:contain;display:block;}
+.ename{font-family:var(--display);font-weight:700;font-size:1.18rem;color:var(--text-1);letter-spacing:-.01em;}
+.esub{font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text-3);}
+.exch-foot{display:flex;align-items:center;justify-content:space-between;margin-top:.45rem;}
+.exch-foot .st{font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);}
+.tgl{width:40px;height:23px;border-radius:999px;background:rgba(34,211,160,.3);position:relative;flex:none;}
+.tgl::after{content:'';position:absolute;top:3px;left:20px;width:17px;height:17px;border-radius:50%;background:var(--teal);}
+.int-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem;}
+.int{border:1px solid var(--line);border-radius:13px;padding:1.1rem 1.2rem;background:rgba(255,255,255,.015);}
+.int h4{font-family:var(--display);font-size:1rem;color:var(--text-1);display:flex;align-items:center;gap:.5rem;margin-bottom:.4rem;}
+.int h4 i{color:var(--blue);}
+.int p{font-size:.84rem;color:var(--text-2);}
+@media(max-width:880px){.exch-grid{grid-template-columns:1fr 1fr;}.int-grid{grid-template-columns:1fr;}}
+@media(max-width:560px){.exch-grid{grid-template-columns:1fr;}}
+
+/* CTA */
+.cta-band{position:relative;z-index:1;text-align:center;padding:clamp(3.5rem,8vh,6rem) 0;}
+.cta-card{max-width:760px;margin:0 auto;background:linear-gradient(140deg,rgba(77,139,255,.14),rgba(34,211,160,.1));border:1px solid var(--line-strong);border-radius:22px;padding:clamp(2rem,5vw,3.2rem);}
+.cta-card h2{font-family:var(--display);font-weight:800;font-size:clamp(1.7rem,3.6vw,2.5rem);color:var(--text-1);letter-spacing:-.02em;margin-bottom:.7rem;}
+.cta-card p{font-size:1.05rem;color:var(--text-2);margin-bottom:1.5rem;}
+.cta-card .hero-cta{justify-content:center;}
+.foot{border-top:1px solid var(--line);position:relative;z-index:1;}
+.foot-in{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;padding:1.6rem 0;font-size:.8rem;color:var(--text-3);}
+.foot-in a{color:var(--text-2);}
+.foot-in .r{display:flex;gap:1.2rem;}
+
+@media print{.nav,.chain-rail{position:static!important;}.j-visual{position:static!important;}.jstep{min-height:auto!important;}body::before{position:absolute;}.sec,.hero{break-inside:avoid;}}
+</style>
+</head>
+<body>
+
+<header class="nav"><div class="wrap nav-in">
+  <a class="nav-logo" href="#top"><img src="assets/logo-light-full.png" alt="Energy CRM"></a>
+  <nav class="nav-links">
+    <a href="#journey">How it works</a>
+    <a href="#capabilities">Capabilities</a>
+    <a href="#markets">Markets</a>
+    <a href="#why">Why us</a>
+  </nav>
+  <div class="nav-right">
+    <div class="lang"><a href="product-ro.html">RO</a><a class="on" href="product-en.html">EN</a></div>
+    <a class="btn btn-p" href="#contact"><i class="ri-calendar-check-line"></i>Live demo</a>
+  </div>
+</div></header>
+
+<!-- HERO -->
+<section class="hero" id="top"><div class="wrap hero-grid">
+  <div>
+    <span class="eyebrow"><i class="ri-flashlight-line"></i>Asset management & automated trading</span>
+    <div class="kick">One platform.</div>
+    <h1>From asset control <span class="grad">to market profit.</span></h1>
+    <p class="sub">Energy CRM controls your parks and batteries, sells automatically on the <strong>day-ahead</strong> and <strong>intraday</strong> markets and stays connected to the <strong>balancing</strong> market — turning every forecast into revenue and keeping you clear of imbalance costs. Around the clock, 24/7.</p>
+    <div class="hero-cta">
+      <a class="btn btn-p" href="#contact"><i class="ri-calendar-check-line"></i>Book a live demo</a>
+      <a class="btn btn-g" href="#journey"><i class="ri-play-circle-line"></i>See it in action</a>
+    </div>
+    <div class="hero-trust"><i class="ri-shield-check-line"></i>Authorized ISV for OPCOM (EPEX SPOT) &amp; BRM (Nord Pool)</div>
+  </div>
+  <div>
+    <div class="console">
+      <div class="console-top"><span class="t">Live Operations</span><span class="live"><span class="pd"></span>In production</span></div>
+      <div class="console-grid">
+        <div class="metric"><div class="l"><i class="ri-flashlight-line"></i>Active power</div><div class="v"><span id="m-pow">32.4</span> <small>MW</small></div></div>
+        <div class="metric"><div class="l"><i class="ri-battery-2-charge-line"></i>Battery SoC</div><div class="v"><span id="m-soc">67</span><small>%</small></div></div>
+        <div class="metric"><div class="l"><i class="ri-exchange-line"></i>IDM orders today</div><div class="v" id="m-ord">1,284</div></div>
+        <div class="metric"><div class="l"><i class="ri-money-euro-circle-line"></i>Revenue today</div><div class="v">€<span id="m-rev">18,440</span></div></div>
+      </div>
+      <div class="console-foot"><span><span class="ab">●</span> AUTO-BALANCER ACTIVE</span><span id="m-dev">Imbalance: 0.4%</span></div>
+    </div>
+    <div class="demo-tag">Demo data, for illustration.</div>
+  </div>
+</div></section>
+
+<!-- MARKETS (moved to top) -->
+<section class="sec" id="markets" style="padding:clamp(2.4rem,5vh,3.4rem) 0"><div class="wrap">
+  <div class="sec-h" style="margin-bottom:1.6rem"><span class="k">Connectivity</span>
+    <h2>Connected to the region's markets</h2>
+    <p>A single integration for day-ahead and intraday — OPCOM, BRM, EPEX SPOT, Nord Pool, IBEX, SEEPEX.</p></div>
+  <div class="int-shell"><div class="exch-grid">
+    <div class="exch on"><span class="elogo-sm"><img src="assets/exchanges/opcom.webp" alt="OPCOM"></span><div class="ename">OPCOM</div><div class="esub">Romania · DAM &amp; IDM</div><div class="exch-foot"><span class="st">Connected</span><span class="tgl"></span></div></div>
+    <div class="exch on"><span class="elogo-sm"><img src="assets/exchanges/brm.png" alt="BRM"></span><div class="ename">BRM</div><div class="esub">Romania · contracts</div><div class="exch-foot"><span class="st">Connected</span><span class="tgl"></span></div></div>
+    <div class="exch on"><span class="elogo-sm"><img src="assets/exchanges/epexspot.png" alt="EPEX SPOT"></span><div class="ename">EPEX SPOT</div><div class="esub">Europe · spot</div><div class="exch-foot"><span class="st">Connected</span><span class="tgl"></span></div></div>
+    <div class="exch on"><span class="elogo-sm"><img src="assets/exchanges/nordpool.png" alt="Nord Pool"></span><div class="ename">Nord Pool</div><div class="esub">Europe · spot</div><div class="exch-foot"><span class="st">Connected</span><span class="tgl"></span></div></div>
+    <div class="exch on"><span class="elogo-sm"><img src="assets/exchanges/ibex.webp" alt="IBEX"></span><div class="ename">IBEX</div><div class="esub">Bulgaria</div><div class="exch-foot"><span class="st">Connected</span><span class="tgl"></span></div></div>
+    <div class="exch on"><span class="elogo-sm"><img src="assets/exchanges/seepex.png" alt="SEEPEX"></span><div class="ename">SEEPEX</div><div class="esub">Serbia</div><div class="exch-foot"><span class="st">Connected</span><span class="tgl"></span></div></div>
+  </div></div>
+</div></section>
+
+<!-- JOURNEY -->
+<section class="journey" id="journey">
+  <div class="chain-rail"><div class="wrap"><div class="chain" id="chain">
+    <div class="cstep" data-i="0"><span class="num">01</span><i class="ri-router-line"></i>Asset control<span class="arr">→</span></div>
+    <div class="cstep" data-i="1"><span class="num">02</span><i class="ri-line-chart-line"></i>Forecast<span class="arr">→</span></div>
+    <div class="cstep" data-i="2"><span class="num">03</span><i class="ri-bar-chart-grouped-line"></i>Day-ahead<span class="arr">→</span></div>
+    <div class="cstep" data-i="3"><span class="num">04</span><i class="ri-stock-line"></i>Intraday<span class="arr">→</span></div>
+    <div class="cstep" data-i="4"><span class="num">05</span><i class="ri-scales-3-line"></i>Balancing<span class="arr">→</span></div>
+    <div class="cstep" data-i="5"><span class="num">06</span><i class="ri-money-euro-circle-line"></i>Profit</div>
+  </div></div></div>
+
+  <div class="wrap" style="padding-top:3rem;padding-bottom:1rem">
+    <div class="sec-h" style="margin-bottom:1.5rem">
+      <span class="k">The journey of one MWh</span>
+      <h2>Follow one megawatt-hour, from panel to profit</h2>
+      <p>Unlike pure trading platforms, we start from the physical asset and carry it all the way to market — every stage, automated. The visuals below reproduce the platform's real screens.</p>
+    </div>
+    <div class="j-body">
+      <!-- sticky visual: 6 app-like panels -->
+      <div class="j-visual">
+        <div class="jvwrap">
+          <!-- 0: ASSET CONTROL -->
+          <div class="jv on" data-i="0"><div class="appcard">
+            <div class="appbar"><span class="ttl"><i class="ri-router-line"></i>Dacia Park · Asset control</span><span class="abdg"><span class="pd"></span>SCADA live</span></div>
+            <div class="appbody">
+              <div class="asset2">
+                <div class="apanel"><div class="ah"><i class="ri-battery-2-charge-line"></i>Battery (BESS)</div>
+                  <div class="ring"><svg width="104" height="104" viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="10"/><circle cx="60" cy="60" r="52" fill="none" stroke="url(#bg)" stroke-width="10" stroke-linecap="round" stroke-dasharray="326.7" stroke-dashoffset="107.8" transform="rotate(-90 60 60)"/><defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#22d3a0"/><stop offset="1" stop-color="#4d8bff"/></linearGradient></defs></svg><div class="lbl"><span class="v">67%</span><span class="u">SoC</span></div></div>
+                  <div style="margin-top:.6rem"><div class="bkv"><span class="k">Power</span><span class="v dn">−12.0 MW</span></div><div class="bkv"><span class="k">SoH</span><span class="v up">98%</span></div></div>
+                  <div class="ctrack"><span class="knob"></span></div><div class="setn">Setpoint: <b>−12 MW (charging)</b> → SCADA</div>
+                </div>
+                <div class="apanel"><div class="ah"><i class="ri-sun-line"></i>Solar park</div>
+                  <svg class="pv-curve" viewBox="0 0 200 74" preserveAspectRatio="none"><defs><linearGradient id="pvg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f7b924" stop-opacity=".38"/><stop offset="1" stop-color="#f7b924" stop-opacity="0"/></linearGradient></defs><path d="M0,68 C36,68 50,16 100,12 C150,16 164,68 200,68 L200,74 L0,74 Z" fill="url(#pvg)"/><path d="M0,68 C36,68 50,16 100,12 C150,16 164,68 200,68" fill="none" stroke="#f7b924" stroke-width="2"/></svg>
+                  <div class="pv-now">32.4 <small>MW · target 34.0</small></div>
+                  <div class="dispatch"><span class="on"></span><span class="on"></span><span class="hi"></span><span class="hi"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="hi"></span><span class="hi"></span><span class="on"></span><span class="on"></span><span class="on"></span><span></span><span class="on"></span><span class="hi"></span><span class="hi"></span><span class="on"></span></div>
+                  <div class="strip-x"><span>00</span><span>Schedule 96×15min</span><span>24</span></div>
+                </div>
+              </div>
+            </div>
+          </div></div>
+          <!-- 1: FORECAST -->
+          <div class="jv" data-i="1"><div class="appcard">
+            <div class="appbar"><span class="ttl"><i class="ri-line-chart-line"></i>DAM Forecasts · 96 intervals</span><span class="abdg amber">Meteologica</span></div>
+            <div class="appbody">
+              <div class="kpis"><div class="kpi"><div class="l">Forecast output</div><div class="v">32.3 <small>MWh</small></div></div><div class="kpi"><div class="l">Source accuracy</div><div class="v tl">94<small>%</small></div></div><div class="kpi"><div class="l">Interval</div><div class="v">15 <small>min</small></div></div></div>
+              <div class="strip" id="strip-fc"></div>
+              <div class="strip-x"><span>00</span><span>06</span><span>12</span><span>18</span><span>24</span></div>
+              <div class="strip-leg"><span><i style="background:#4d8bff"></i>Forecast</span><span><i style="background:rgba(244,246,251,.4)"></i>DAM</span><span><i style="background:#ff5d6c"></i>Now</span></div>
+            </div>
+          </div></div>
+          <!-- 2: DAY-AHEAD -->
+          <div class="jv" data-i="2"><div class="appcard">
+            <div class="appbar"><span class="ttl"><i class="ri-bar-chart-grouped-line"></i>DAM Offers</span><span class="abdg amber">Deadline 12:00 CET · 21h28m</span></div>
+            <div class="appbody">
+              <table class="atbl"><thead><tr><th>Delivery date</th><th>Source</th><th>Quantity</th><th>Status</th></tr></thead><tbody>
+                <tr><td class="strong">26 May 2026</td><td class="muted">Meteologica</td><td class="num">16.9 MWh</td><td><span class="bdg dr">Draft</span></td></tr>
+                <tr><td class="strong">25 May 2026</td><td class="muted">Meteologica</td><td class="num">11.9 MWh</td><td><span class="bdg ok">Confirmed</span></td></tr>
+                <tr><td class="strong">24 May 2026</td><td class="muted">Meteologica</td><td class="num">10.6 MWh</td><td><span class="bdg ok">Confirmed</span></td></tr>
+                <tr><td class="strong">23 May 2026</td><td class="muted">Meteologica</td><td class="num">10.3 MWh</td><td><span class="bdg ok">Confirmed</span></td></tr>
+                <tr><td class="strong">22 May 2026</td><td class="muted">Manual Upload</td><td class="num">6.1 MWh</td><td><span class="bdg ok">Confirmed</span></td></tr>
+              </tbody></table>
+              <div class="strip-leg" style="margin-top:.3rem"><i class="ri-flow-chart" style="color:var(--teal)"></i><span style="color:var(--text-2)">Automatic Pipeline → submitted to OPCOM via API</span></div>
+            </div>
+          </div></div>
+          <!-- 3: INTRADAY -->
+          <div class="jv" data-i="3"><div class="appcard">
+            <div class="appbar"><span class="ttl"><i class="ri-stock-line"></i>IDM Cockpit · Dacia</span><span class="abdg"><span class="pd"></span>Auto-balancer · live</span></div>
+            <div class="appbody">
+              <div class="kpis">
+                <div class="kpi"><div class="l">DAM Sold</div><div class="v">11.2 <small>MWh</small></div></div>
+                <div class="kpi"><div class="l">IDM Expected</div><div class="v">32.3 <small>MWh</small></div><div class="s">Δ +21.1 vs DAM</div></div>
+                <div class="kpi"><div class="l">Sell Filled / Target</div><div class="v tl">8.4<small>/20.4</small></div><div class="s">41% complete</div></div>
+              </div>
+              <div class="strip" id="strip-cp"></div>
+              <div class="strip-x"><span>00</span><span>06</span><span>12</span><span>18</span><span>24</span></div>
+              <div class="strip-leg"><span><i style="background:#4d8bff"></i>Forecast</span><span><i style="background:#22d3a0"></i>Sell filled</span><span><i style="background:#ff5d6c"></i>Now</span></div>
+            </div>
+          </div></div>
+          <!-- 4: BALANCING -->
+          <div class="jv" data-i="4"><div class="appcard">
+            <div class="appbar"><span class="ttl"><i class="ri-scales-3-line"></i>Delivery intervals · 96</span><span class="abdg"><span class="pd"></span>Bot live</span></div>
+            <div class="appbody">
+              <table class="atbl"><thead><tr><th>Interval</th><th>DAM</th><th>Forecast</th><th>Δ Balance</th><th>Dir</th><th>Status</th></tr></thead><tbody>
+                <tr><td class="strong">05:30–05:45</td><td class="num">0.00</td><td class="num">0.15</td><td class="num pos">+0.15</td><td><span class="bdg sell">SELL</span></td><td><span class="bdg ok">Delivered</span></td></tr>
+                <tr><td class="strong">05:45–06:00</td><td class="num">0.00</td><td class="num">0.25</td><td class="num pos">+0.25</td><td><span class="bdg sell">SELL</span></td><td><span class="bdg ok">Delivered</span></td></tr>
+                <tr><td class="strong">06:00–06:15</td><td class="num">0.00</td><td class="num">0.37</td><td class="num pos">+0.37</td><td><span class="bdg sell">SELL</span></td><td><span class="bdg ok">Delivered</span></td></tr>
+                <tr><td class="strong">06:15–06:30</td><td class="num">0.10</td><td class="num">0.40</td><td class="num pos">+0.30</td><td><span class="bdg sell">SELL</span></td><td><span class="bdg dr">Filling</span></td></tr>
+                <tr><td class="strong">06:30–06:45</td><td class="num">0.20</td><td class="num">0.20</td><td class="num muted">0.00</td><td><span class="bdg flat">FLAT</span></td><td><span class="bdg flat">—</span></td></tr>
+              </tbody></table>
+              <div class="strip-leg" style="margin-top:.3rem"><i class="ri-robot-2-line" style="color:var(--teal)"></i><span style="color:var(--text-2)">Δ Balance auto-covered by the auto-balancer → minimal imbalance</span></div>
+            </div>
+          </div></div>
+          <!-- 5: PROFIT -->
+          <div class="jv" data-i="5"><div class="appcard">
+            <div class="appbar"><span class="ttl"><i class="ri-money-euro-circle-line"></i>Financial Report</span><span class="abdg amber">25.04 – 01.06</span></div>
+            <div class="appbody">
+              <div class="kpis">
+                <div class="kpi"><div class="l">Total Revenue</div><div class="v tl">€64.9k</div></div>
+                <div class="kpi"><div class="l">Total Costs</div><div class="v rs">€18.1k</div></div>
+                <div class="kpi"><div class="l">Net Revenue</div><div class="v">€46.8k</div></div>
+              </div>
+              <table class="atbl"><thead><tr><th>Market</th><th>Transactions</th><th>Revenue</th><th>Net</th></tr></thead><tbody>
+                <tr><td class="strong">Day-Ahead</td><td class="num">976</td><td class="num pos">€16.9k</td><td class="num pos">€16.9k</td></tr>
+                <tr><td class="strong">Intraday</td><td class="num">2,091</td><td class="num pos">€48.0k</td><td class="num pos">€29.9k</td></tr>
+              </tbody></table>
+              <div class="strip-leg" style="margin-top:.3rem"><i class="ri-download-2-line" style="color:var(--blue)"></i><span style="color:var(--text-2)">Export PDF / Excel for accounting</span></div>
+            </div>
+          </div></div>
+        </div>
+        <div class="demo-note"><i class="ri-information-line"></i>A reproduction of the platform's real screens · demo data, for illustration.</div>
+      </div>
+      <!-- steps -->
+      <div class="j-steps" id="jsteps">
+        <div class="jstep on" data-i="0">
+          <span class="num">01 · Asset control</span><h3>It all starts with your asset</h3>
+          <p>You monitor and command your parks and batteries directly through SCADA, in real time. You don't just forecast output: you control it.</p>
+          <ul><li>Power, voltages and daily energy, live (~10s)</li><li>Battery (BESS) control: SoC, charge/discharge via setpoint</li><li>Output scheduling across 96 intervals of 15 minutes</li></ul>
+          <span class="badge"><i class="ri-router-line"></i>The differentiator: real physical control, not just trading</span>
+        </div>
+        <div class="jstep" data-i="1">
+          <span class="num">02 · Forecast</span><h3>The best forecast becomes the plan</h3>
+          <p>The platform pulls in forecasts from multiple sources, automatically compares them by accuracy and picks the best one — the basis of every offer and every order.</p>
+          <ul><li>Multiple weather sources, compatible with the client's own</li><li>96 intervals of 15 min/day, with accuracy history</li><li>Full audit trail of decisions</li></ul>
+          <span class="badge"><i class="ri-line-chart-line"></i>The foundation of the entire chain</span>
+        </div>
+        <div class="jstep" data-i="2">
+          <span class="num">03 · Day-ahead</span><h3>Sold on tomorrow's market — automatically</h3>
+          <p>From the forecasts, the platform generates the DAM offer, validates it and submits it to OPCOM via API, before 12:00 CET. No manual entry, no missed deadline.</p>
+          <ul><li>Automatic aggregation across all the company's parks</li><li>Automatic pipeline: draft → submitted → accepted</li><li>Results and clearing prices, ready to report</li></ul>
+          <span class="badge"><i class="ri-timer-flash-line"></i>12:00 CET deadline, met automatically</span>
+        </div>
+        <div class="jstep" data-i="3">
+          <span class="num">04 · Intraday</span><h3>Adjusted in real time, hands-free</h3>
+          <p>As the forecast shifts, the auto-balancer automatically places orders on the intraday market to keep your position correct — with one-click execution whenever you want to act manually.</p>
+          <ul><li>Active auto-balancer, orders placed based on deviation</li><li>Live orderbook via WebSocket, hourly & quarter-hourly contracts</li><li>Complete ledger of thousands of processed orders</li></ul>
+          <span class="badge"><i class="ri-robot-2-line"></i>Works 24/7 — at night and on weekends too</span>
+        </div>
+        <div class="jstep" data-i="4">
+          <span class="num">05 · Balancing</span><h3>In balance with the system</h3>
+          <p>Connected to the balancing mechanism, the platform automatically notifies the responsible party (BRP) and keeps the position balanced — so that imbalances, and their costs, are kept to a minimum.</p>
+          <ul><li>Scheduled BRP notifications, with templates and confirmation</li><li>Bilateral contracts (OTC) derived automatically from DAM offers</li><li>Position balanced automatically → minimal imbalance costs</li></ul>
+          <span class="badge"><i class="ri-scales-3-line"></i>Imbalance avoidance, by design</span>
+        </div>
+        <div class="jstep" data-i="5">
+          <span class="num">06 · Profit</span><h3>Every MWh, monetized</h3>
+          <p>At the end, you see exactly what you earned: DAM and IDM revenue and imbalance costs, in a single report — with export for accounting and management.</p>
+          <ul><li>Market breakdown: Day-Ahead vs. Intraday (revenue, net)</li><li>The complete transaction ledger, exportable</li><li>Financial and accuracy reports, over flexible periods</li></ul>
+          <span class="badge"><i class="ri-money-euro-circle-line"></i>Maximum profit per MWh</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CALCULATOR -->
+<section class="sec" id="calc"><div class="wrap">
+  <div class="sec-h"><span class="k">What do imbalances cost you?</span>
+    <h2>Calculate your imbalance exposure</h2>
+    <p>Estimate how much forecast errors cost you each year — and how much you can save with automated balancing. Move the sliders.</p>
+  </div>
+  <div class="calc">
+    <div class="calc-in">
+      <h3><i class="ri-sliders-line"></i>Your parameters</h3>
+      <div class="field"><label>Installed capacity <b><span id="c-cap">25</span> MW</b></label><input type="range" id="r-cap" min="1" max="200" value="25"></div>
+      <div class="field"><label>Average forecast error <b><span id="c-err">8</span>%</b></label><input type="range" id="r-err" min="1" max="25" value="8"></div>
+      <div class="field"><label>Average imbalance price <b><span id="c-prc">85</span> €/MWh</b></label><input type="range" id="r-prc" min="20" max="250" value="85"></div>
+      <div class="field"><label>Reduction with auto-balancer <b><span id="c-red">70</span>%</b></label><input type="range" id="r-red" min="30" max="90" value="70"></div>
+    </div>
+    <div class="calc-out">
+      <div class="row"><span class="l">Estimated imbalance cost / year, without automation</span><span class="big rose" id="o-cost">€1,489,200</span></div>
+      <div class="row"><span class="l">Estimated savings with Energy CRM / year</span><span class="big teal" id="o-save">€1,042,440</span></div>
+      <div class="note2">Indicative estimate (8,760 h/year), for illustration. Actual results depend on the asset profile, volatility and market.</div>
+    </div>
+  </div>
+</div></section>
+
+<!-- CAPABILITIES — interactive explorer -->
+<section class="sec" id="capabilities"><div class="wrap">
+  <div class="sec-h"><span class="k">What we cover</span><h2>Capabilities, in detail</h2>
+    <p>Click each capability — see exactly what it does, what makes it special, and how it looks in the platform.</p></div>
+  <div class="fx"><div class="fx-list" id="fx-list"></div><div class="fx-detail" id="fx-detail"></div></div>
+</div></section>
+
+<!-- STATS -->
+<section class="sec" style="padding-top:1rem"><div class="wrap">
+  <div class="stats">
+    <div class="stat"><div class="n"><span class="grad">24/7</span></div><div class="l">Automated trading & balancing</div></div>
+    <div class="stat"><div class="n"><span class="grad">96</span></div><div class="l">15-min intervals, controlled daily</div></div>
+    <div class="stat"><div class="n"><span class="grad">6</span></div><div class="l">Regional markets connected</div></div>
+    <div class="stat"><div class="n"><span class="grad">~10s</span></div><div class="l">SCADA data refresh, in production</div></div>
+  </div>
+</div></section>
+
+<!-- USE CASES -->
+<section class="sec" id="usecases"><div class="wrap">
+  <div class="sec-h"><span class="k">Who it's for</span><h2>Built for energy producers and traders</h2></div>
+  <div class="uc-grid">
+    <div class="uc"><i class="ri-sun-line"></i><h4>Solar parks</h4><p>Photovoltaic output, precise forecasts, automated trading.</p></div>
+    <div class="uc"><i class="ri-windy-line"></i><h4>Wind farms</h4><p>Multiple weather sources and intraday balancing.</p></div>
+    <div class="uc"><i class="ri-water-flash-line"></i><h4>Hydropower</h4><p>Full support for hydro generation.</p></div>
+    <div class="uc"><i class="ri-battery-2-charge-line"></i><h4>Batteries (BESS)</h4><p>Charge/discharge control and scheduled dispatch.</p></div>
+    <div class="uc"><i class="ri-exchange-line"></i><h4>Traders & aggregators</h4><p>Advanced tools for generation portfolios.</p></div>
+  </div>
+</div></section>
+
+<!-- WHY -->
+<section class="sec" id="why"><div class="wrap">
+  <div class="sec-h"><span class="k">Why Energy CRM</span><h2>Asset-first, not just trading</h2>
+    <p>Most platforms start and stop at trading. We close the loop between the physical asset and the market.</p></div>
+  <div class="cmp">
+    <div class="cmp-col them"><h3><i class="ri-close-circle-line"></i> Trading-only tools</h3>
+      <ul>
+        <li><i class="ri-subtract-line"></i>Forecast the asset, but don't control it</li>
+        <li><i class="ri-subtract-line"></i>Trading separate from park and battery operations</li>
+        <li><i class="ri-subtract-line"></i>Balancing is left to you, manually</li>
+        <li><i class="ri-subtract-line"></i>Fragmented integrations, multiple vendors</li>
+      </ul>
+    </div>
+    <div class="cmp-col us"><h3><i class="ri-checkbox-circle-line"></i> Energy CRM</h3>
+      <ul>
+        <li><i class="ri-check-line"></i>Controls the asset via SCADA (parks + batteries)</li>
+        <li><i class="ri-check-line"></i>A single chain: from control to selling and balancing</li>
+        <li><i class="ri-check-line"></i>An auto-balancer that minimizes imbalances around the clock</li>
+        <li><i class="ri-check-line"></i>One platform, multiple markets, multi-tenant</li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+
+<!-- TECH INTEGRATIONS -->
+<section class="sec" id="integrari"><div class="wrap">
+  <div class="sec-h"><span class="k">Integrations</span><h2>Technical integrations & security</h2>
+    <p>Connect to your asset's systems and operate securely, multi-tenant.</p></div>
+  <div class="int-grid">
+    <div class="int"><h4><i class="ri-router-line"></i>SCADA</h4><p>Direct connection to the plant via a per-park API — live data (~10s) and battery control.</p></div>
+    <div class="int"><h4><i class="ri-cloud-line"></i>Weather providers</h4><p>Compatible with the client's forecast sources, with automatic accuracy comparison.</p></div>
+    <div class="int"><h4><i class="ri-mail-settings-line"></i>BRP notifications</h4><p>Automatic delivery with Excel templates, confirmation and suppression-list management.</p></div>
+    <div class="int"><h4><i class="ri-shield-keyhole-line"></i>Security & roles</h4><p>SSL, 5 predefined roles and up to 33 configurable permissions per role.</p></div>
+    <div class="int"><h4><i class="ri-building-line"></i>Multi-tenant</h4><p>Complete data isolation between companies, with onboarding in seconds.</p></div>
+    <div class="int"><h4><i class="ri-global-line"></i>6 regional markets</h4><p>A single integration for day-ahead and intraday across RO, BG, RS and the EU.</p></div>
+  </div>
+</div></section>
+
+<!-- CTA -->
+<section class="cta-band" id="contact"><div class="wrap"><div class="cta-card">
+  <h2>See it live. Software in production, not promises.</h2>
+  <p>Book a personalized demo of the Energy CRM platform and watch the entire chain run — from asset control to market profit.</p>
+  <div class="hero-cta">
+    <a class="btn btn-p" href="mailto:contact@progemisoft.com"><i class="ri-calendar-check-line"></i>Book a demo</a>
+    <a class="btn btn-g" href="https://crm.progemisoft.com"><i class="ri-external-link-line"></i>crm.progemisoft.com</a>
+  </div>
+</div></div></section>
+
+<footer class="foot"><div class="wrap foot-in">
+  <span>© PROGEMISOFT SRL — Bucharest, Romania · <a href="mailto:contact@progemisoft.com">contact@progemisoft.com</a></span>
+  <span class="r"><span>Authorized ISV for OPCOM &amp; BRM</span><span>We · Think · IT</span></span>
+</div></footer>
+
+<script>
+/* live console */
+(function(){
+  const live=!window.__FREEZE__;
+  const ids=['m-pow','m-soc','m-ord','m-rev','m-dev'].map(i=>document.getElementById(i));
+  let pow=32.4,soc=67,ord=1284,rev=18440;
+  const nf=n=>n.toLocaleString('en-US');
+  function step(){
+    pow=Math.max(8,Math.min(48,pow+(Math.random()-0.5)*1.6));
+    soc=Math.max(20,Math.min(98,soc+(Math.random()-0.5)*2));
+    ord+=Math.floor(Math.random()*4);rev+=Math.floor(Math.random()*180);
+    ids[0].textContent=pow.toFixed(1);ids[1].textContent=Math.round(soc);
+    ids[2].textContent=nf(ord);ids[3].textContent=nf(rev);
+    ids[4].textContent='Imbalance: '+(Math.random()*0.9).toFixed(1)+'%';
+  }
+  if(live)setInterval(step,1600);
+})();
+
+/* day-strip bell bars */
+(function(){
+  function bell(n){const a=[];for(let i=0;i<n;i++){const x=(i-n/2)/(n/4.2);a.push(Math.exp(-x*x/2));}return a;}
+  const fc=document.getElementById('strip-fc');
+  if(fc){fc.innerHTML=bell(44).map(h=>`<span class="bar" style="height:${6+h*94}%"></span>`).join('')+`<span class="now" style="left:64%"></span>`;}
+  const cp=document.getElementById('strip-cp');
+  if(cp){const arr=bell(44);cp.innerHTML=arr.map((h,i)=>`<span class="bar ${i>=24&&i<=28?'fill':''}" style="height:${6+h*94}%"></span>`).join('')+`<span class="now" style="left:64%"></span>`;}
+})();
+
+/* journey scrollytelling + interactive chain */
+(function(){
+  const steps=[...document.querySelectorAll('.jstep')];
+  const csteps=[...document.querySelectorAll('.cstep')];
+  const visuals=[...document.querySelectorAll('.jv')];
+  function activate(i){
+    steps.forEach(s=>s.classList.toggle('on',+s.dataset.i===i));
+    csteps.forEach(s=>s.classList.toggle('on',+s.dataset.i===i));
+    visuals.forEach(v=>v.classList.toggle('on',+v.dataset.i===i));
+  }
+  const obs=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting)activate(+e.target.dataset.i);});},{rootMargin:'-45% 0px -45% 0px',threshold:0});
+  steps.forEach(s=>obs.observe(s));
+  csteps.forEach(c=>c.addEventListener('click',()=>{const t=steps[+c.dataset.i];if(t)t.scrollIntoView({behavior:'smooth',block:'center'});}));
+  activate(0);
+})();
+
+/* imbalance calculator */
+(function(){
+  const ids=['cap','err','prc','red'];const r={},c={};
+  ids.forEach(k=>{r[k]=document.getElementById('r-'+k);c[k]=document.getElementById('c-'+k);});
+  const oCost=document.getElementById('o-cost'),oSave=document.getElementById('o-save');
+  const eur=n=>'€'+Math.round(n).toLocaleString('en-US');
+  function calc(){
+    const cap=+r.cap.value,err=+r.err.value,prc=+r.prc.value,red=+r.red.value;
+    c.cap.textContent=cap;c.err.textContent=err;c.prc.textContent=prc;c.red.textContent=red;
+    const volume=cap*0.28*(err/100)*8760;const cost=volume*prc;
+    oCost.textContent=eur(cost);oSave.textContent=eur(cost*(red/100));
+  }
+  ids.forEach(k=>r[k].addEventListener('input',calc));calc();
+})();
+
+/* FEATURE EXPLORER + clickable exchange toggles */
+(function(){
+  function bell(n){const a=[];for(let i=0;i<n;i++){const x=(i-n/2)/(n/4.2);a.push(Math.exp(-x*x/2));}return a;}
+  const V={
+    control:`<div class="fxv"><div class="fxv-bar"><span class="l"><i class="ri-router-line"></i>Park · SCADA live</span><span>~10s</span></div><div class="fxv-body"><div style="display:flex;gap:1rem;align-items:center"><div class="ring" style="width:92px;height:92px;flex:none"><svg width="92" height="92" viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="11"/><circle cx="60" cy="60" r="52" fill="none" stroke="url(#fxbg)" stroke-width="11" stroke-linecap="round" stroke-dasharray="326.7" stroke-dashoffset="107.8" transform="rotate(-90 60 60)"/><defs><linearGradient id="fxbg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#22d3a0"/><stop offset="1" stop-color="#4d8bff"/></linearGradient></defs></svg><div class="lbl"><span class="v" style="font-size:1.15rem">67%</span><span class="u">SoC</span></div></div><div style="flex:1"><div class="bkv"><span class="k">Power</span><span class="v dn">−12 MW</span></div><div class="bkv"><span class="k">SoH</span><span class="v up">98%</span></div><div class="bkv"><span class="k">C-rate</span><span class="v">0.5C</span></div></div></div><div class="ctrack"><span class="knob"></span></div><div class="setn">Setpoint: <b>−12 MW (charging)</b> → SCADA</div></div></div>`,
+    forecast:`<div class="fxv"><div class="fxv-bar"><span class="l"><i class="ri-line-chart-line"></i>DAM Forecasts · 96</span><span>Meteologica</span></div><div class="fxv-body"><div class="strip" id="fx-strip" style="height:132px"></div><div class="strip-x"><span>00</span><span>12</span><span>24</span></div></div></div>`,
+    dam:`<div class="fxv"><div class="fxv-bar"><span class="l"><i class="ri-bar-chart-grouped-line"></i>DAM Offers</span><span>12:00 CET</span></div><div class="fxv-body"><table class="atbl"><tbody><tr><td class="strong">26 May</td><td class="num">16.9 MWh</td><td><span class="bdg dr">Draft</span></td></tr><tr><td class="strong">25 May</td><td class="num">11.9 MWh</td><td><span class="bdg ok">Confirmed</span></td></tr><tr><td class="strong">24 May</td><td class="num">10.6 MWh</td><td><span class="bdg ok">Confirmed</span></td></tr></tbody></table><div class="strip-leg" style="margin-top:.5rem"><i class="ri-flow-chart" style="color:var(--teal)"></i><span style="color:var(--text-2);font-size:.72rem">Automatic Pipeline → OPCOM</span></div></div></div>`,
+    idm:`<div class="fxv"><div class="fxv-bar"><span class="l"><i class="ri-stock-line"></i>IDM Cockpit</span><span>Auto-balancer</span></div><div class="fxv-body"><div class="kpis"><div class="kpi"><div class="l">DAM Sold</div><div class="v">11.2<small> MWh</small></div></div><div class="kpi"><div class="l">IDM Exp.</div><div class="v">32.3<small> MWh</small></div><div class="s">Δ +21.1</div></div><div class="kpi"><div class="l">Filled/Tgt</div><div class="v tl">8.4<small>/20.4</small></div></div></div><div class="strip-leg" style="margin-top:.6rem"><i class="ri-robot-2-line" style="color:var(--teal)"></i><span style="color:var(--text-2);font-size:.72rem">Orders placed automatically based on deviation</span></div></div></div>`,
+    markets:`<div class="fxv"><div class="fxv-bar"><span class="l"><i class="ri-global-line"></i>Connected markets</span><span>6</span></div><div class="fxv-body"><div class="fx-logos"><div class="lc"><img src="assets/exchanges/opcom.webp" alt="OPCOM"></div><div class="lc"><img src="assets/exchanges/brm.png" alt="BRM"></div><div class="lc"><img src="assets/exchanges/epexspot.png" alt="EPEX SPOT"></div><div class="lc"><img src="assets/exchanges/nordpool.png" alt="Nord Pool"></div><div class="lc"><img src="assets/exchanges/ibex.webp" alt="IBEX"></div><div class="lc"><img src="assets/exchanges/seepex.png" alt="SEEPEX"></div></div></div></div>`,
+    ops:`<div class="fxv"><div class="fxv-bar"><span class="l"><i class="ri-dashboard-3-line"></i>Financial Report</span><span>25.04–01.06</span></div><div class="fxv-body"><div class="kpis"><div class="kpi"><div class="l">Revenue</div><div class="v tl">€64.9k</div></div><div class="kpi"><div class="l">Costs</div><div class="v rs">€18.1k</div></div><div class="kpi"><div class="l">Net</div><div class="v">€46.8k</div></div></div><div class="strip-leg" style="margin-top:.6rem"><i class="ri-pie-chart-line" style="color:var(--blue)"></i><span style="color:var(--text-2);font-size:.72rem">Market breakdown: DAM vs. IDM</span></div></div></div>`
+  };
+  const FEATURES=[
+    {k:'control',icon:'ri-router-line',name:'Asset control & management',tag:'SCADA · parks & batteries',
+      h:'You command the physical asset, in real time',
+      pitch:'The only platform that not only reads the asset but commands it too: it sends setpoints directly to parks and batteries via SCADA.',
+      bul:['Power Scheduler across 96 intervals of 15 min — ON / OFF / Custom, with recurrence','Batteries (BESS): charge/discharge via grid-centric setpoint, SoC · SoH · C-rate','Live telemetry (~10s): power, voltages, power factor, total energy'],
+      hi:'The physical → financial loop, closed: you control output AND your market position.',
+      stats:[{k:'Resolution',v:'96×15min'},{k:'Refresh',v:'~10s'}],vis:V.control},
+    {k:'forecast',icon:'ri-line-chart-line',name:'Forecast intelligence',tag:'Multi-source · auto-compared',
+      h:'The best forecast, chosen automatically',
+      pitch:'It pulls in forecasts from multiple sources, compares them by accuracy and picks the best one — the foundation of every offer and every order.',
+      bul:['Compatible with the weather sources the client already uses','Accuracy history per provider + audit trail of decisions','The same forecast feeds DAM and the intraday balancing position'],
+      hi:'Better accuracy → fewer imbalances, more profit.',
+      stats:[{k:'Intervals',v:'96/day'},{k:'Sources',v:'Multiple'}],vis:V.forecast},
+    {k:'dam',icon:'ri-bar-chart-grouped-line',name:'Automated Day-Ahead selling',tag:'Automatic pipeline · OPCOM API',
+      h:'Sold on day-ahead, without a single touch',
+      pitch:'From accepted forecasts, it generates the offer, validates it and submits it to OPCOM via API — before the 12:00 CET deadline.',
+      bul:['Automatic aggregation across every park in the company','Min/Max price and direction per interval; anti-error validation','Warnings for missing forecasts + countdown to deadline','Results: clearing prices, offered vs. realized'],
+      hi:'Automatic Pipeline: zero manual steps, zero missed deadlines.',
+      stats:[{k:'Deadline',v:'12:00 CET'},{k:'Flow',v:'draft → accepted'}],vis:V.dam},
+    {k:'idm',icon:'ri-stock-line',name:'Intraday & balancing',tag:'Auto-balancer · WebSocket',
+      h:'A robot that keeps you balanced, around the clock',
+      pitch:'The auto-balancer tracks deviation from your sold position and places intraday orders automatically — 24/7, including nights and weekends.',
+      bul:['Live orderbook via WebSocket; hourly & quarter-hourly contracts; gate-close countdown','Live KPIs: DAM Sold, IDM Expected Δ, Sell/Buy Filled vs. Target, VWAP vs. DAM','Best bid/ask per interval; one-click manual execution when you want control'],
+      hi:'Position balanced automatically → minimal imbalance costs.',
+      stats:[{k:'Mode',v:'24/7'},{k:'Data',v:'WebSocket'}],vis:V.idm},
+    {k:'markets',icon:'ri-global-line',name:'Market & BRP connectivity',tag:'6 markets · BRP · OTC',
+      h:'A single integration, the whole region',
+      pitch:'Direct access to market operators across the region, plus automatic BRP reporting and bilateral (OTC) contracts.',
+      bul:['OPCOM, BRM, EPEX SPOT, Nord Pool, IBEX, SEEPEX','Scheduled BRP notifications: Excel templates, confirmation, suppression list','OTC contracts derived automatically from DAM offers'],
+      hi:'Authorized ISV for OPCOM & BRM — native access, not a workaround.',
+      stats:[{k:'Markets',v:'6'},{k:'BRP',v:'Automatic'}],vis:V.markets},
+    {k:'ops',icon:'ri-dashboard-3-line',name:'Operations & reporting',tag:'Pipeline · reports · multi-tenant',
+      h:'Total visibility and financial control',
+      pitch:'The entire daily flow, transactions and financial performance — in one place, with multi-tenant isolation.',
+      bul:['Trading Pipeline: status per company/park, completion rate, auto-refresh','Financial report: DAM/IDM revenue, imbalance costs, market breakdown','Excel/CSV/PDF export · 5 roles + up to 33 permissions · SSL & audit trail'],
+      hi:'Multi-tenant with complete isolation — each client, only their own data.',
+      stats:[{k:'Roles',v:'5'},{k:'Permissions',v:'33'}],vis:V.ops}
+  ];
+  const list=document.getElementById('fx-list'),detail=document.getElementById('fx-detail');
+  if(list&&detail){
+    list.innerHTML=FEATURES.map((f,i)=>`<button class="fx-item${i===0?' on':''}" data-k="${f.k}"><span class="ic"><i class="${f.icon}"></i></span><span><span class="fx-name">${f.name}</span><span class="fx-tag">${f.tag}</span></span><i class="ri-arrow-right-s-line chev"></i></button>`).join('');
+    detail.innerHTML=FEATURES.map((f,i)=>`<div class="fx-panel${i===0?' on':''}" data-k="${f.k}"><div><div class="fx-eyebrow"><i class="${f.icon}"></i>${f.tag}</div><div class="fx-h">${f.h}</div><p class="fx-pitch">${f.pitch}</p><ul class="fx-bul">${f.bul.map(x=>`<li><i class="ri-check-line"></i>${x}</li>`).join('')}</ul><div class="fx-hi"><i class="ri-star-smile-line"></i>${f.hi}</div><div class="fx-stats">${f.stats.map(s=>`<div class="fx-stat"><div class="k">${s.k}</div><div class="v">${s.v}</div></div>`).join('')}</div></div><div class="fx-vis">${f.vis}</div></div>`).join('');
+    const fxs=document.getElementById('fx-strip');
+    if(fxs)fxs.innerHTML=bell(40).map(h=>`<span class="bar" style="height:${6+h*94}%"></span>`).join('')+`<span class="now" style="left:62%"></span>`;
+    const items=[...list.querySelectorAll('.fx-item')],panels=[...detail.querySelectorAll('.fx-panel')];
+    items.forEach(it=>it.addEventListener('click',()=>{const k=it.dataset.k;items.forEach(x=>x.classList.toggle('on',x===it));panels.forEach(p=>p.classList.toggle('on',p.dataset.k===k));}));
+  }
+})();
+</script>
+</body>
+</html>
