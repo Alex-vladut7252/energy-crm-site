@@ -4003,7 +4003,98 @@ strong{color:var(--text-1);font-weight:700;}
 .ss-card p{font-size:.85rem;color:var(--text-2);}
 @media(max-width:880px){.ss{grid-template-columns:1fr;}}
 </style>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap"></head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&amp;family=Manrope:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap">
+<!--SX-->
+<style id="sx-styles">
+.sxwrap{--sx-line:rgba(255,255,255,.08);--sx-lines:rgba(255,255,255,.16);--sx-t2:rgba(244,246,251,.74);--sx-t3:rgba(244,246,251,.5);--sx-t4:rgba(244,246,251,.34);--sx-disp:'Sora',sans-serif;--sx-mono:'JetBrains Mono',monospace;}
+@keyframes sxpulse{0%{box-shadow:0 0 0 0 rgba(34,211,160,.55);}70%{box-shadow:0 0 0 9px rgba(34,211,160,0);}100%{box-shadow:0 0 0 0 rgba(34,211,160,0);}}
+.sxwrap .card{border:1px solid var(--sx-lines);border-radius:18px;overflow:hidden;background:linear-gradient(180deg,rgba(19,26,46,.7),rgba(7,10,19,.65));box-shadow:0 30px 70px rgba(0,0,0,.5);}
+.sxwrap .cbar{display:flex;align-items:center;justify-content:space-between;padding:.75rem 1.1rem;background:rgba(255,255,255,.03);border-bottom:1px solid var(--sx-line);}
+.sxwrap .cbar .t{display:flex;align-items:center;gap:.55rem;font-family:var(--sx-disp);font-weight:600;font-size:.95rem;color:#f4f6fb;}
+.sxwrap .cbar .t i{color:#22d3a0;font-size:1.15rem;}
+.sxwrap .lbadge{font-family:var(--sx-mono);font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:#22d3a0;border:1px solid rgba(34,211,160,.35);border-radius:999px;padding:.24rem .6rem;display:inline-flex;align-items:center;gap:.4rem;}
+.sxwrap .pdot{width:8px;height:8px;border-radius:50%;background:#22d3a0;box-shadow:0 0 0 0 rgba(34,211,160,.6);animation:sxpulse 1.7s infinite;}
+.sxwrap .sx-demo{font-family:var(--sx-mono);font-size:.68rem;color:var(--sx-t4);font-style:italic;margin-top:.7rem;text-align:right;}
+/* autopilot */
+.sxwrap .apb{padding:1.4rem 1.5rem;}
+.sxwrap .aptop{display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap;margin-bottom:1.1rem;}
+.sxwrap .apnow{font-family:var(--sx-mono);font-size:.8rem;color:var(--sx-t2);}
+.sxwrap .apnow b{color:#22d3a0;}
+.sxwrap .apclock{font-family:var(--sx-disp);font-weight:800;font-size:1.6rem;color:#f4f6fb;font-variant-numeric:tabular-nums;}
+.sxwrap .aptrack{position:relative;height:8px;border-radius:8px;background:#1d2742;overflow:hidden;margin:.5rem 0 1.2rem;}
+.sxwrap .apfill{position:absolute;left:0;top:0;bottom:0;width:0%;background:linear-gradient(90deg,#4d8bff,#22d3a0);border-radius:8px;transition:width .5s linear;}
+.sxwrap .apsteps{display:grid;grid-template-columns:repeat(5,1fr);gap:.6rem;}
+.sxwrap .apstep{border:1px solid var(--sx-line);border-radius:12px;padding:.85rem .8rem;background:rgba(255,255,255,.015);transition:all .35s;position:relative;}
+.sxwrap .apstep.done{border-color:rgba(34,211,160,.4);background:rgba(34,211,160,.07);}
+.sxwrap .apstep.active{border-color:rgba(77,139,255,.55);background:rgba(77,139,255,.1);box-shadow:0 0 26px rgba(77,139,255,.18);}
+.sxwrap .apstep .aic{font-size:1.2rem;color:var(--sx-t3);margin-bottom:.35rem;}
+.sxwrap .apstep.done .aic,.sxwrap .apstep.active .aic{color:#22d3a0;}
+.sxwrap .apstep.active .aic{color:#4d8bff;}
+.sxwrap .apstep h4{font-family:var(--sx-disp);font-size:.82rem;color:#f4f6fb;margin-bottom:.15rem;}
+.sxwrap .apstep p{font-size:.68rem;color:var(--sx-t3);font-family:var(--sx-mono);}
+.sxwrap .apstep .chk{position:absolute;top:.55rem;right:.6rem;color:#22d3a0;opacity:0;transition:.3s;font-size:.9rem;}
+.sxwrap .apstep.done .chk{opacity:1;}
+.sxwrap .apstats{display:flex;gap:1.6rem;margin-top:1.2rem;padding-top:1rem;border-top:1px solid var(--sx-line);flex-wrap:wrap;}
+.sxwrap .apstat .sv{font-family:var(--sx-disp);font-weight:800;font-size:1.35rem;color:#f4f6fb;font-variant-numeric:tabular-nums;}
+.sxwrap .apstat .sl{font-family:var(--sx-mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--sx-t3);}
+.sxwrap .apstat .sv.tl{color:#22d3a0;}
+/* strip */
+.sxwrap .sstrip{position:relative;height:150px;display:flex;align-items:flex-end;gap:2px;padding-top:14px;}
+.sxwrap .sstrip .sbar{flex:1;border-radius:2px 2px 0 0;min-height:2px;background:linear-gradient(180deg,rgba(77,139,255,.55),rgba(77,139,255,.1));transition:height .3s,background .3s;}
+.sxwrap .sstrip .sbar.fill{background:linear-gradient(180deg,#22d3a0,rgba(34,211,160,.2));}
+.sxwrap .sstrip .sbar.dev{background:linear-gradient(180deg,#ff5d6c,rgba(255,93,108,.15));}
+.sxwrap .sstrip .snow{position:absolute;top:0;bottom:0;width:2px;background:#ff5d6c;z-index:3;transition:left .4s linear;}
+.sxwrap .sstrip .snow::after{content:'NOW';position:absolute;top:-1px;left:3px;font-family:var(--sx-mono);font-size:.5rem;color:#ff5d6c;}
+.sxwrap .sx{display:flex;justify-content:space-between;font-family:var(--sx-mono);font-size:.54rem;color:var(--sx-t4);margin-top:.25rem;}
+.sxwrap .sleg{display:flex;gap:1rem;font-size:.66rem;color:var(--sx-t3);flex-wrap:wrap;}
+.sxwrap .sleg span{display:flex;align-items:center;gap:.3rem;}.sxwrap .sleg i{width:13px;height:3px;border-radius:2px;display:inline-block;}
+/* forecast */
+.sxwrap .stwo{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;padding:1.3rem 1.4rem;}
+.sxwrap .spanel{border:1px solid var(--sx-line);border-radius:13px;padding:1rem;background:rgba(255,255,255,.015);}
+.sxwrap .sph{font-family:var(--sx-mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--sx-t3);margin-bottom:.7rem;display:flex;justify-content:space-between;}
+.sxwrap .fcsvg{width:100%;height:150px;display:block;}
+.sxwrap .accept{display:inline-flex;align-items:center;gap:.4rem;font-size:.74rem;font-weight:600;color:#22d3a0;background:rgba(34,211,160,.1);border:1px solid rgba(34,211,160,.3);border-radius:8px;padding:.3rem .6rem;margin-top:.6rem;opacity:0;transform:translateY(4px);transition:.4s;}
+.sxwrap .accept.on{opacity:1;transform:none;}
+.sxwrap .subline{display:flex;align-items:center;gap:.5rem;margin-top:.7rem;font-size:.8rem;color:var(--sx-t2);opacity:0;transition:.4s;}
+.sxwrap .subline.on{opacity:1;}.sxwrap .subline i{color:#22d3a0;}
+/* idm */
+.sxwrap .idmb{padding:1.3rem 1.4rem;}
+.sxwrap .idmk{display:flex;gap:1.4rem;margin-bottom:1rem;flex-wrap:wrap;}
+.sxwrap .idmk .sv{font-family:var(--sx-disp);font-weight:700;font-size:1.15rem;color:#f4f6fb;}
+.sxwrap .idmk .sv.rose{color:#ff5d6c;}.sxwrap .idmk .sv.tl{color:#22d3a0;}
+.sxwrap .idmk .sl{font-family:var(--sx-mono);font-size:.58rem;letter-spacing:.07em;text-transform:uppercase;color:var(--sx-t3);}
+.sxwrap .rbot{display:inline-flex;align-items:center;gap:.45rem;font-family:var(--sx-mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--sx-t3);border:1px solid var(--sx-line);border-radius:999px;padding:.24rem .6rem;transition:.3s;}
+.sxwrap .rbot.on{color:#22d3a0;border-color:rgba(34,211,160,.4);background:rgba(34,211,160,.08);}
+.sxwrap .rbot .bd{width:8px;height:8px;border-radius:50%;background:var(--sx-t4);transition:.3s;}
+.sxwrap .rbot.on .bd{background:#22d3a0;box-shadow:0 0 0 0 rgba(34,211,160,.6);animation:sxpulse 1.5s infinite;}
+/* battery */
+.sxwrap .batb{display:grid;grid-template-columns:280px 1fr;gap:1.3rem;padding:1.3rem 1.4rem;}
+.sxwrap .sring{position:relative;width:150px;height:150px;margin:0 auto;}
+.sxwrap .sring .rl{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.sxwrap .sring .rl .sv{font-family:var(--sx-disp);font-weight:800;font-size:2rem;color:#f4f6fb;line-height:1;}
+.sxwrap .sring .rl .ru{font-family:var(--sx-mono);font-size:.58rem;letter-spacing:.12em;color:var(--sx-t3);text-transform:uppercase;margin-top:.2rem;}
+.sxwrap .bflow{text-align:center;margin-top:.7rem;font-family:var(--sx-mono);font-size:.78rem;color:var(--sx-t2);}
+.sxwrap .bflow b{font-weight:600;}
+.sxwrap .bflow.charge b{color:#22d3a0;}.sxwrap .bflow.discharge b{color:#f7b924;}.sxwrap .bflow.idle b{color:var(--sx-t3);}
+.sxwrap .setw{margin-top:1.1rem;}
+.sxwrap .setl{display:flex;justify-content:space-between;font-family:var(--sx-mono);font-size:.62rem;color:var(--sx-t3);margin-bottom:.5rem;}
+.sxwrap input[type=range].bset{width:100%;-webkit-appearance:none;height:8px;border-radius:8px;background:linear-gradient(90deg,rgba(34,211,160,.5),rgba(255,255,255,.06) 50%,rgba(247,185,36,.5));outline:none;}
+.sxwrap input[type=range].bset::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:#f4f6fb;cursor:grab;box-shadow:0 2px 10px rgba(0,0,0,.5),0 0 0 4px rgba(255,255,255,.1);}
+.sxwrap input[type=range].bset::-webkit-slider-thumb:active{cursor:grabbing;}
+.sxwrap .seth{text-align:center;font-size:.7rem;color:var(--sx-t4);margin-top:.5rem;}
+.sxwrap .batr{display:flex;flex-direction:column;gap:.8rem;}
+.sxwrap .brow{display:flex;justify-content:space-between;font-size:.8rem;padding:.35rem 0;border-bottom:1px solid var(--sx-line);}
+.sxwrap .brow .bk{color:var(--sx-t3);}.sxwrap .brow .bv{font-family:var(--sx-mono);color:#f4f6fb;}
+.sxwrap .brow .bv.tl{color:#22d3a0;}
+.sxwrap .sdisp{display:flex;gap:1.5px;margin-top:.3rem;}
+.sxwrap .sdisp span{flex:1;height:22px;border-radius:2px;background:rgba(255,255,255,.05);}
+.sxwrap .sdisp span.on{background:linear-gradient(180deg,#22d3a0,rgba(34,211,160,.4));}
+.sxwrap .sdisp span.hi{background:linear-gradient(180deg,#4d8bff,rgba(77,139,255,.4));}
+.sxwrap .sdisp span.amb{background:linear-gradient(180deg,#f7b924,rgba(247,185,36,.4));}
+@media(max-width:820px){.sxwrap .stwo,.sxwrap .batb{grid-template-columns:1fr;}.sxwrap .apsteps{grid-template-columns:1fr 1fr;}}
+</style>
+<!--/SX-->
+</head>
 <body>
 
 <header class="nav"><div class="wrap nav-in">
@@ -4063,6 +4154,33 @@ strong{color:var(--text-1);font-weight:700;}
 </div></section>
 
 <!-- MARKETS (moved to top) -->
+
+<!--SX-->
+<section class="sec sxwrap" id="s-autopilot"><div class="wrap">
+  <div class="sec-h"><span class="k">Runs itself</span><h2>Autopilot: <span class="grad">you sleep, it trades</span></h2>
+    <p>The whole trading day runs automatically — from forecast to offer, results and balancing. Zero clicks.</p></div>
+  <div class="card"><div class="cbar"><span class="t"><i class="ri-robot-2-line"></i>Trading autopilot</span><span class="lbadge"><span class="pdot"></span>Active · 24/7</span></div>
+    <div class="apb">
+      <div class="aptop"><div class="apnow" id="ap-now">Now: <b>initializing…</b></div><div class="apclock" id="ap-clock">06:00</div></div>
+      <div class="aptrack"><div class="apfill" id="ap-fill"></div></div>
+      <div class="apsteps" id="ap-steps">
+        <div class="apstep"><i class="ri-check-line chk"></i><div class="aic"><i class="ri-line-chart-line"></i></div><h4>Forecast</h4><p>sources compared</p></div>
+        <div class="apstep"><i class="ri-check-line chk"></i><div class="aic"><i class="ri-bar-chart-grouped-line"></i></div><h4>DAM Offer</h4><p>auto-built</p></div>
+        <div class="apstep"><i class="ri-check-line chk"></i><div class="aic"><i class="ri-upload-2-line"></i></div><h4>Submit</h4><p>11:50 CET</p></div>
+        <div class="apstep"><i class="ri-check-line chk"></i><div class="aic"><i class="ri-auction-line"></i></div><h4>Results</h4><p>13:00 · booked</p></div>
+        <div class="apstep"><i class="ri-check-line chk"></i><div class="aic"><i class="ri-scales-3-line"></i></div><h4>Balancing</h4><p>auto-balancer</p></div>
+      </div>
+      <div class="apstats">
+        <div class="apstat"><div class="sv" id="ap-orders">0</div><div class="sl">Orders placed today</div></div>
+        <div class="apstat"><div class="sv tl" id="ap-rev">€0</div><div class="sl">Revenue today</div></div>
+        <div class="apstat"><div class="sv" id="ap-dev">0.0%</div><div class="sl">Current imbalance</div></div>
+        <div class="apstat"><div class="sv">0</div><div class="sl">Human interventions</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="sx-demo">Demo data, for illustration.</div>
+</div></section>
+<!--/SX-->
 <section class="sec" id="markets" style="padding:clamp(2.4rem,5vh,3.4rem) 0"><div class="wrap">
   <div class="sec-h" style="margin-bottom:1.6rem"><span class="k">Connectivity</span>
     <h2>Connected to the region's markets</h2>
@@ -4078,6 +4196,51 @@ strong{color:var(--text-1);font-weight:700;}
 </div></section>
 
 <!-- SOLAR + STORAGE -->
+
+<!--SX-->
+<section class="sec sxwrap" id="s-forecast"><div class="wrap">
+  <div class="sec-h"><span class="k">Forecast → offer</span><h2>From forecast, <span class="grad">the offer writes itself</span></h2>
+    <p>Forecasts from commercial vendors (Meteologica P10/P50/P90, ANT Energy), auto-compared — the best becomes the DAM offer.</p></div>
+  <div class="card"><div class="cbar"><span class="t"><i class="ri-line-chart-line"></i>Forecast → DAM Offer</span><span class="lbadge"><span class="pdot"></span>Auto</span></div>
+    <div class="stwo">
+      <div class="spanel"><div class="sph"><span>Forecasts compared</span><span>Meteologica · ANT Energy</span></div>
+        <svg class="fcsvg" viewBox="0 0 320 150" preserveAspectRatio="none">
+          <defs><linearGradient id="sx-band" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4d8bff" stop-opacity=".22"/><stop offset="1" stop-color="#4d8bff" stop-opacity="0"/></linearGradient></defs>
+          <path d="M0,120 C50,110 80,40 160,30 C240,40 270,110 320,120 L320,150 L0,150 Z" fill="url(#sx-band)"/>
+          <path d="M0,124 C50,116 80,50 160,40 C240,50 270,116 320,124" fill="none" stroke="#4d8bff" stroke-width="2"/>
+          <path d="M0,128 C50,120 80,58 160,48 C240,58 270,120 320,128" fill="none" stroke="#22d3a0" stroke-width="2" stroke-dasharray="5 3"/>
+        </svg>
+        <div class="sleg"><span><i style="background:#4d8bff"></i>Meteologica P50</span><span><i style="background:rgba(77,139,255,.3)"></i>P10–P90</span><span><i style="background:#22d3a0"></i>ANT Energy</span></div>
+        <div class="accept" id="fc-accept"><i class="ri-check-double-line"></i>Best accepted: Meteologica (94% accuracy)</div>
+      </div>
+      <div class="spanel"><div class="sph"><span>DAM Offer · 96 intervals</span><span id="fc-qty">0.0 MWh</span></div>
+        <div class="sstrip" id="fc-offer" style="height:150px"></div>
+        <div class="sx"><span>00</span><span>12</span><span>24</span></div>
+        <div class="subline" id="fc-submit"><i class="ri-checkbox-circle-line"></i>Submitted to OPCOM via API · 11:50 CET</div>
+      </div>
+    </div>
+  </div>
+  <div class="sx-demo">Demo data, for illustration.</div>
+</div></section>
+<section class="sec sxwrap" id="s-idm"><div class="wrap">
+  <div class="sec-h"><span class="k">Intraday balancing</span><h2>The forecast shifts. <span class="grad">The robot keeps you balanced.</span></h2>
+    <p>The auto-balancer tracks the deviation from your sold position and places intraday orders — imbalance, reduced to zero.</p></div>
+  <div class="card"><div class="cbar"><span class="t"><i class="ri-stock-line"></i>IDM Cockpit · auto-balancer</span><span class="rbot" id="idm-bot"><span class="bd"></span>Auto-balancer</span></div>
+    <div class="idmb">
+      <div class="idmk">
+        <div><div class="sv" id="idm-sold">11.2 <small style="font-size:.7rem;color:var(--sx-t3)">MWh</small></div><div class="sl">DAM Sold</div></div>
+        <div><div class="sv rose" id="idm-gap">0.0 <small style="font-size:.7rem;color:var(--sx-t3)">MWh</small></div><div class="sl">Imbalance (gap)</div></div>
+        <div><div class="sv tl" id="idm-filled">0 <small style="font-size:.7rem;color:var(--sx-t3)">ordine</small></div><div class="sl">Auto-placed orders</div></div>
+        <div><div class="sv tl" id="idm-saved">€0</div><div class="sl">Imbalance avoided</div></div>
+      </div>
+      <div class="sstrip" id="idm-strip"></div>
+      <div class="sx"><span>00</span><span>06</span><span>12</span><span>18</span><span>24</span></div>
+      <div class="sleg" style="margin-top:.5rem"><span><i style="background:#4d8bff"></i>Sold position</span><span><i style="background:#ff5d6c"></i>Forecast deviation</span><span><i style="background:#22d3a0"></i>Balancing orders</span></div>
+    </div>
+  </div>
+  <div class="sx-demo">Demo data, for illustration.</div>
+</div></section>
+<!--/SX-->
 <section class="sec" id="storage" style="padding-top:clamp(2.2rem,5vh,3.4rem)"><div class="wrap">
   <div class="sec-h"><span class="k">Solar + storage</span>
     <h2>A solar park earns more with a battery — and a brain</h2>
@@ -4118,6 +4281,37 @@ strong{color:var(--text-1);font-weight:700;}
 </div></section>
 
 <!-- JOURNEY -->
+
+<!--SX-->
+<section class="sec sxwrap" id="s-battery"><div class="wrap">
+  <div class="sec-h"><span class="k">Active control</span><h2>Battery <span class="grad">control panel</span></h2>
+    <p>Command the battery directly, via SCADA. Drag the setpoint — charge or discharge, in real time.</p></div>
+  <div class="card"><div class="cbar"><span class="t"><i class="ri-battery-2-charge-line"></i>BESS battery · Dacia</span><span class="lbadge"><span class="pdot"></span>SCADA live</span></div>
+    <div class="batb">
+      <div>
+        <div class="sring"><svg width="150" height="150" viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="11"/><circle id="sx-soc-arc" cx="60" cy="60" r="52" fill="none" stroke="url(#sx-sg)" stroke-width="11" stroke-linecap="round" stroke-dasharray="326.7" stroke-dashoffset="107.8" transform="rotate(-90 60 60)"/><defs><linearGradient id="sx-sg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#22d3a0"/><stop offset="1" stop-color="#4d8bff"/></linearGradient></defs></svg><div class="rl"><span class="sv" id="sx-soc-v">67%</span><span class="ru">SoC</span></div></div>
+        <div class="bflow idle" id="bat-flow">State: <b id="bat-flow-t">holding</b></div>
+        <div class="setw">
+          <div class="setl"><span>◀ Charge</span><span>Discharge ▶</span></div>
+          <input type="range" class="bset" id="bat-set" min="-40" max="40" value="0">
+          <div class="seth">Drag the setpoint (−40…+40 MW)</div>
+        </div>
+      </div>
+      <div class="batr">
+        <div class="brow"><span class="bk">Setpoint sent → SCADA</span><span class="bv" id="bat-sp">0 MW</span></div>
+        <div class="brow"><span class="bk">To grid</span><span class="bv tl" id="bat-grid">0.0 MW</span></div>
+        <div class="brow"><span class="bk">State of Health</span><span class="bv tl">98%</span></div>
+        <div class="brow"><span class="bk">Available energy</span><span class="bv" id="bat-en">34.2 MWh</span></div>
+        <div style="margin-top:.4rem"><div class="sph" style="margin-bottom:.4rem">96×15min schedule — charge at midday, discharge in the evening</div>
+          <div class="sdisp" id="bat-disp"></div>
+          <div class="sx"><span>00</span><span>12</span><span>24</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sx-demo">Demo data, for illustration.</div>
+</div></section>
+<!--/SX-->
 <section class="journey" id="journey">
   <div class="chain-rail"><div class="wrap"><div class="chain" id="chain">
     <div class="cstep on" data-i="0"><span class="num">01</span><i class="ri-router-line"></i>Asset control<span class="arr">→</span></div>
@@ -4378,4 +4572,66 @@ strong{color:var(--text-1);font-weight:700;}
 
 
 
+
+<!--SX-->
+<script>
+(function(){
+  const nf=n=>Math.round(n).toLocaleString('en-US');
+  function bell(n,peak){const a=[];for(let i=0;i<n;i++){const x=(i-n*peak)/(n/4.2);a.push(Math.exp(-x*x/2));}return a;}
+  /* 1. autopilot */
+  (function(){
+    const steps=[...document.querySelectorAll('#ap-steps .apstep')];if(!steps.length)return;
+    const fill=document.getElementById('ap-fill'),clock=document.getElementById('ap-clock'),now=document.getElementById('ap-now');
+    const oEl=document.getElementById('ap-orders'),rEl=document.getElementById('ap-rev'),dEl=document.getElementById('ap-dev');
+    const phases=[{p:8,t:'fetching forecasts from Meteologica &amp; ANT Energy',clk:'06:00',step:0},{p:30,t:'DAM offer built from the accepted forecast',clk:'09:30',step:1},{p:48,t:'offer submitted to OPCOM — before 12:00 CET',clk:'11:50',step:2},{p:60,t:'results fetched, revenue booked per park',clk:'13:00',step:3},{p:92,t:'auto-balancer placing intraday orders · interval 71/96',clk:'19:15',step:4},{p:100,t:'day closed — minimal imbalance, zero interventions',clk:'24:00',step:4}];
+    let orders=1180,rev=17200,i=0;
+    function run(){const ph=phases[i];fill.style.width=ph.p+'%';clock.textContent=ph.clk;now.innerHTML='Now: <b>'+ph.t+'</b>';
+      steps.forEach((s,si)=>{s.classList.toggle('done',si<ph.step);s.classList.toggle('active',si===ph.step);});
+      orders+=Math.floor(Math.random()*40+10);rev+=Math.floor(Math.random()*900+300);
+      oEl.textContent=nf(orders);rEl.textContent='€'+nf(rev);dEl.textContent=(Math.random()*0.7).toFixed(1)+'%';i++;
+      if(i>=phases.length){setTimeout(()=>{steps.forEach(s=>s.classList.remove('done','active'));orders=1180;rev=17200;i=0;run();},1600);return;}
+      setTimeout(run,1500);}
+    run();
+  })();
+  /* 2. forecast->offer */
+  (function(){
+    const offer=document.getElementById('fc-offer');if(!offer)return;
+    const accept=document.getElementById('fc-accept'),submit=document.getElementById('fc-submit'),qty=document.getElementById('fc-qty');
+    const arr=bell(44,0.5);offer.innerHTML=arr.map(()=>'<span class="sbar" style="height:2%"></span>').join('');const bars=[...offer.children];
+    function cycle(){accept.classList.remove('on');submit.classList.remove('on');qty.textContent='0.0 MWh';bars.forEach(b=>b.style.height='2%');
+      setTimeout(()=>accept.classList.add('on'),900);let k=0,tot=0;
+      const fi=setInterval(()=>{if(k>=bars.length){clearInterval(fi);submit.classList.add('on');return;}bars[k].style.height=(6+arr[k]*94)+'%';tot+=arr[k]*0.75;qty.textContent=tot.toFixed(1)+' MWh';k++;},40);
+      setTimeout(cycle,6500);}
+    cycle();
+  })();
+  /* 3. idm balancing */
+  (function(){
+    const strip=document.getElementById('idm-strip');if(!strip)return;
+    const bot=document.getElementById('idm-bot'),gapEl=document.getElementById('idm-gap'),filledEl=document.getElementById('idm-filled'),savedEl=document.getElementById('idm-saved');
+    const n=48,base=bell(n,0.5);strip.innerHTML=base.map(()=>'<span class="sbar" style="height:2%"></span>').join('')+'<span class="snow" style="left:0%"></span>';
+    const bars=[...strip.querySelectorAll('.sbar')],nowM=strip.querySelector('.snow');
+    function setBase(){bars.forEach((b,i)=>{b.className='sbar';b.style.height=(6+base[i]*88)+'%';});}
+    function cycle(){setBase();bot.classList.remove('on');gapEl.textContent='0.0 MWh';gapEl.className='sv rose';filledEl.textContent='0 orders';savedEl.textContent='€0';nowM.style.left='0%';
+      const ds=20,de=34;
+      setTimeout(()=>{nowM.style.left='42%';for(let i=ds;i<de;i++){bars[i].classList.add('dev');bars[i].style.height=(6+base[i]*88+18)+'%';}gapEl.textContent='−2.1 MWh';},1200);
+      setTimeout(()=>{bot.classList.add('on');let f=0;const fi=setInterval(()=>{if(ds+f>=de){clearInterval(fi);gapEl.textContent='0.1 MWh';gapEl.className='sv tl';savedEl.textContent='€1,840';return;}const idx=ds+f;bars[idx].classList.remove('dev');bars[idx].classList.add('fill');bars[idx].style.height=(6+base[idx]*88)+'%';f++;filledEl.textContent=f+' orders';},160);},2600);
+      setTimeout(cycle,7200);}
+    cycle();
+  })();
+  /* 4. battery interactive */
+  (function(){
+    const set=document.getElementById('bat-set');if(!set)return;
+    const arc=document.getElementById('sx-soc-arc'),socV=document.getElementById('sx-soc-v'),flow=document.getElementById('bat-flow'),flowT=document.getElementById('bat-flow-t'),sp=document.getElementById('bat-sp'),grid=document.getElementById('bat-grid'),en=document.getElementById('bat-en'),disp=document.getElementById('bat-disp');
+    disp.innerHTML=Array.from({length:32},(_,i)=>{const cls=(i>=9&&i<=14)?'on':(i>=17&&i<=22)?'amb':(i%3?'hi':'');return'<span class="'+cls+'"></span>';}).join('');
+    let soc=67;
+    function render(){const v=+set.value;sp.textContent=(v>0?'+':'')+v+' MW';const circ=326.7;arc.setAttribute('stroke-dashoffset',(circ*(1-soc/100)).toFixed(1));socV.textContent=Math.round(soc)+'%';
+      if(v<-1){flow.className='bflow charge';flowT.textContent='charging '+Math.abs(v)+' MW';grid.textContent=v.toFixed(1)+' MW';grid.className='bv';}
+      else if(v>1){flow.className='bflow discharge';flowT.textContent='discharging '+v+' MW';grid.textContent='+'+v.toFixed(1)+' MW';grid.className='bv tl';}
+      else{flow.className='bflow idle';flowT.textContent='holding';grid.textContent='0.0 MW';grid.className='bv';}
+      en.textContent=(soc/100*51).toFixed(1)+' MWh';}
+    set.addEventListener('input',()=>{soc=Math.max(8,Math.min(98,67-(+set.value)*0.35));render();});render();
+  })();
+})();
+</script>
+<!--/SX-->
 </body></html>
