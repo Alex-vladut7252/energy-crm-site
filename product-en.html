@@ -3631,6 +3631,19 @@ strong{color:var(--text-1);font-weight:700;}
 .sxwrap .sx-stat{text-align:center;border:1px solid var(--sx-line);border-radius:14px;padding:1.5rem 1rem;background:rgba(255,255,255,.015);}
 .sxwrap .sx-stat .sn{font-family:var(--sx-disp);font-weight:800;font-size:2.2rem;letter-spacing:-.02em;background:linear-gradient(100deg,#4d8bff,#22d3a0);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
 .sxwrap .sx-stat .sll{font-size:.82rem;color:var(--sx-t3);margin-top:.3rem;}
+
+.sxwrap .sxdet-wrap{margin-top:.9rem;}
+.sxwrap .sxdet{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.03);border:1px solid var(--sx-line);border-radius:999px;padding:.5rem .95rem;color:var(--sx-t2);font-family:var(--sx-disp);font-weight:600;font-size:.82rem;cursor:pointer;transition:.25s;}
+.sxwrap .sxdet:hover{border-color:var(--sx-lines);color:#f4f6fb;background:rgba(255,255,255,.05);}
+.sxwrap .sxdet i{transition:transform .3s;color:#22d3a0;font-size:1.05rem;}
+.sxwrap .sxdet.open i{transform:rotate(90deg);}
+.sxwrap .sxdet-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease;}
+.sxwrap .sxdet-panel>div{overflow:hidden;}
+.sxwrap .sxdet-panel.open{grid-template-rows:1fr;}
+.sxwrap .sxdet-panel ul{list-style:none;border:1px solid var(--sx-line);border-radius:14px;background:rgba(255,255,255,.02);padding:1.1rem 1.3rem;display:flex;flex-direction:column;gap:.7rem;margin-top:.5rem;}
+.sxwrap .sxdet-panel li{position:relative;padding-left:1.4rem;font-size:.88rem;color:var(--sx-t2);line-height:1.55;}
+.sxwrap .sxdet-panel li::before{content:'';position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:50%;background:linear-gradient(135deg,#4d8bff,#22d3a0);}
+.sxwrap .sxdet-panel b{color:#f4f6fb;font-weight:600;}
 @media(max-width:820px){.sxwrap .stwo,.sxwrap .batb{grid-template-columns:1fr;}.sxwrap .apsteps{grid-template-columns:1fr 1fr;}}
 @media(max-width:760px){.sxwrap .sx-cmp{grid-template-columns:1fr;}.sxwrap .sx-stats{grid-template-columns:1fr 1fr;}}
 </style>
@@ -3734,6 +3747,7 @@ strong{color:var(--text-1);font-weight:700;}
       </div>
     </div>
   </div>
+  <div class="sxdet-wrap"><button class="sxdet" aria-expanded="false"><i class="ri-arrow-right-s-line"></i>How it works</button><div class="sxdet-panel"><div><ul><li><b>Commercial vendors, per park:</b> Meteologica (SOAP, P10/P50/P90 bands) and ANT Energy (REST/OAuth2), configurable for each park.</li><li><b>Accuracy-based selection:</b> we score the vendors daily against realized output (MAE/RMSE); the best one gets priority automatically.</li><li><b>96-interval curve:</b> from the chosen forecast we build 96 price/quantity pairs, at 15-minute resolution.</li><li><b>OPCOM gate closure 12:00 CET:</b> the offer is submitted via API before 11:50, with a safety margin.</li><li><b>Booked results at 13:00:</b> clearing prices are pulled in and recorded per park.</li></ul></div></div></div>
   <div class="sx-demo">Demo data, for illustration.</div>
 </div></section>
 <section class="sec sxwrap" id="s-autopilot"><div class="wrap">
@@ -3758,6 +3772,7 @@ strong{color:var(--text-1);font-weight:700;}
       </div>
     </div>
   </div>
+  <div class="sxdet-wrap"><button class="sxdet" aria-expanded="false"><i class="ri-arrow-right-s-line"></i>How it works</button><div class="sxdet-panel"><div><ul><li><b>One pipeline, no operator:</b> forecast → DAM offer → submit → results → intraday balancing, run end to end.</li><li><b>Fallback on every step:</b> if a forecast source drops, it switches to the next; if a submit fails, it retries until gate closure.</li><li><b>Fully auditable:</b> every action is logged (who, what, when), with alerts on key events.</li><li><b>Human-in-the-loop:</b> you can switch any park to manual at any time, without stopping the rest of the portfolio.</li><li><b>Around the clock:</b> runs 24/7 on CET — nights and weekends included.</li></ul></div></div></div>
   <div class="sx-demo">Demo data, for illustration.</div>
 </div></section>
 <section class="sec sxwrap" id="s-idm"><div class="wrap">
@@ -3776,6 +3791,7 @@ strong{color:var(--text-1);font-weight:700;}
       <div class="sleg" style="margin-top:.5rem"><span><i style="background:#4d8bff"></i>Sold position</span><span><i style="background:#ff5d6c"></i>Forecast deviation</span><span><i style="background:#22d3a0"></i>Balancing orders</span></div>
     </div>
   </div>
+  <div class="sxdet-wrap"><button class="sxdet" aria-expanded="false"><i class="ri-arrow-right-s-line"></i>How it works</button><div class="sxdet-panel"><div><ul><li><b>Gap detection:</b> it compares the updated forecast against your DAM-sold position in real time and computes the imbalance, per interval.</li><li><b>Automatic IDM orders:</b> when the gap crosses a configurable threshold, it places intraday orders to bring you back to position.</li><li><b>~10s sync:</b> decisions factor in price, liquidity and the time left until delivery.</li><li><b>The real goal:</b> minimizing the imbalance energy billed by the TSO (Transelectrica), not just traded volume.</li><li><b>Last layer:</b> the battery can absorb the remaining gap, as a balancing buffer.</li></ul></div></div></div>
   <div class="sx-demo">Demo data, for illustration.</div>
 </div></section>
 <!--/SX-->
@@ -3847,6 +3863,7 @@ strong{color:var(--text-1);font-weight:700;}
       </div>
     </div>
   </div>
+  <div class="sxdet-wrap"><button class="sxdet" aria-expanded="false"><i class="ri-arrow-right-s-line"></i>How it works</button><div class="sxdet-panel"><div><ul><li><b>Direct command over SCADA:</b> you send a grid-centric setpoint (MW) — positive = discharge, negative = charge.</li><li><b>96×15min schedule:</b> charge on the cheap midday surplus, discharge into the evening price peak (arbitrage).</li><li><b>Live telemetry (~10s):</b> SoC, SoH and C-rate, monitored in real time.</li><li><b>Computed or manual:</b> setpoints are computed against price and forecast — or you override them manually, live.</li><li><b>Tied to balancing:</b> the same setpoints feed the anti-imbalance strategy.</li></ul></div></div></div>
   <div class="sx-demo">Demo data, for illustration.</div>
 </div></section>
 <section class="sec sxwrap" id="s-compare"><div class="wrap">
@@ -4204,6 +4221,7 @@ strong{color:var(--text-1);font-weight:700;}
       en.textContent=(soc/100*51).toFixed(1)+' MWh';}
     set.addEventListener('input',()=>{soc=Math.max(8,Math.min(98,67-(+set.value)*0.35));render();});render();
   })();
+  (function(){document.querySelectorAll('.sxdet').forEach(function(btn){btn.addEventListener('click',function(){var p=btn.nextElementSibling;var open=p.classList.toggle('open');btn.classList.toggle('open',open);btn.setAttribute('aria-expanded',open);});});})();
 })();
 </script>
 <!--/SX-->

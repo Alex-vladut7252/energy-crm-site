@@ -3631,6 +3631,19 @@ strong{color:var(--text-1);font-weight:700;}
 .sxwrap .sx-stat{text-align:center;border:1px solid var(--sx-line);border-radius:14px;padding:1.5rem 1rem;background:rgba(255,255,255,.015);}
 .sxwrap .sx-stat .sn{font-family:var(--sx-disp);font-weight:800;font-size:2.2rem;letter-spacing:-.02em;background:linear-gradient(100deg,#4d8bff,#22d3a0);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
 .sxwrap .sx-stat .sll{font-size:.82rem;color:var(--sx-t3);margin-top:.3rem;}
+
+.sxwrap .sxdet-wrap{margin-top:.9rem;}
+.sxwrap .sxdet{display:inline-flex;align-items:center;gap:.5rem;background:rgba(255,255,255,.03);border:1px solid var(--sx-line);border-radius:999px;padding:.5rem .95rem;color:var(--sx-t2);font-family:var(--sx-disp);font-weight:600;font-size:.82rem;cursor:pointer;transition:.25s;}
+.sxwrap .sxdet:hover{border-color:var(--sx-lines);color:#f4f6fb;background:rgba(255,255,255,.05);}
+.sxwrap .sxdet i{transition:transform .3s;color:#22d3a0;font-size:1.05rem;}
+.sxwrap .sxdet.open i{transform:rotate(90deg);}
+.sxwrap .sxdet-panel{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease;}
+.sxwrap .sxdet-panel>div{overflow:hidden;}
+.sxwrap .sxdet-panel.open{grid-template-rows:1fr;}
+.sxwrap .sxdet-panel ul{list-style:none;border:1px solid var(--sx-line);border-radius:14px;background:rgba(255,255,255,.02);padding:1.1rem 1.3rem;display:flex;flex-direction:column;gap:.7rem;margin-top:.5rem;}
+.sxwrap .sxdet-panel li{position:relative;padding-left:1.4rem;font-size:.88rem;color:var(--sx-t2);line-height:1.55;}
+.sxwrap .sxdet-panel li::before{content:'';position:absolute;left:0;top:.55em;width:6px;height:6px;border-radius:50%;background:linear-gradient(135deg,#4d8bff,#22d3a0);}
+.sxwrap .sxdet-panel b{color:#f4f6fb;font-weight:600;}
 @media(max-width:820px){.sxwrap .stwo,.sxwrap .batb{grid-template-columns:1fr;}.sxwrap .apsteps{grid-template-columns:1fr 1fr;}}
 @media(max-width:760px){.sxwrap .sx-cmp{grid-template-columns:1fr;}.sxwrap .sx-stats{grid-template-columns:1fr 1fr;}}
 </style>
@@ -3734,6 +3747,7 @@ strong{color:var(--text-1);font-weight:700;}
       </div>
     </div>
   </div>
+  <div class="sxdet-wrap"><button class="sxdet" aria-expanded="false"><i class="ri-arrow-right-s-line"></i>Cum funcționează</button><div class="sxdet-panel"><div><ul><li><b>Surse comerciale, per parc:</b> Meteologica (SOAP, benzi P10/P50/P90) și ANT Energy (REST/OAuth2), configurabile pentru fiecare parc.</li><li><b>Selecție pe acuratețe:</b> comparăm sursele zilnic pe eroarea față de producția realizată (MAE/RMSE); cea mai bună primește prioritate automat.</li><li><b>Curbă pe 96 de intervale:</b> din prognoza aleasă generăm 96 de perechi preț/cantitate, la pasul de 15 min.</li><li><b>Gate closure OPCOM 12:00 CET:</b> oferta se trimite prin API înainte de 11:50, cu marjă de siguranță.</li><li><b>Rezultate booked la 13:00:</b> prețurile de închidere (clearing) sunt preluate și înregistrate per parc.</li></ul></div></div></div>
   <div class="sx-demo">Date demonstrative, pentru ilustrare.</div>
 </div></section>
 <section class="sec sxwrap" id="s-autopilot"><div class="wrap">
@@ -3758,6 +3772,7 @@ strong{color:var(--text-1);font-weight:700;}
       </div>
     </div>
   </div>
+  <div class="sxdet-wrap"><button class="sxdet" aria-expanded="false"><i class="ri-arrow-right-s-line"></i>Cum funcționează</button><div class="sxdet-panel"><div><ul><li><b>Un singur pipeline, fără operator:</b> prognoză → ofertă DAM → submit → rezultate → balansare intraday, rulat cap-coadă.</li><li><b>Fallback pe fiecare pas:</b> dacă o sursă de prognoză cade, trece pe următoarea; dacă submit-ul eșuează, reîncearcă până la gate closure.</li><li><b>Auditabil integral:</b> fiecare acțiune e logată (cine, ce, când), cu notificări la evenimentele-cheie.</li><li><b>Human-in-the-loop:</b> poți trece oricând un parc pe manual, fără a opri restul portofoliului.</li><li><b>Non-stop:</b> rulează 24/7 pe fus orar CET — inclusiv nopțile și weekendul.</li></ul></div></div></div>
   <div class="sx-demo">Date demonstrative, pentru ilustrare.</div>
 </div></section>
 <section class="sec sxwrap" id="s-idm"><div class="wrap">
@@ -3776,6 +3791,7 @@ strong{color:var(--text-1);font-weight:700;}
       <div class="sleg" style="margin-top:.5rem"><span><i style="background:#4d8bff"></i>Poziție vândută</span><span><i style="background:#ff5d6c"></i>Deviere prognoză</span><span><i style="background:#22d3a0"></i>Ordine balansare</span></div>
     </div>
   </div>
+  <div class="sxdet-wrap"><button class="sxdet" aria-expanded="false"><i class="ri-arrow-right-s-line"></i>Cum funcționează</button><div class="sxdet-panel"><div><ul><li><b>Detectarea gap-ului:</b> compară în timp real prognoza actualizată cu poziția vândută pe DAM și calculează dezechilibrul, per interval.</li><li><b>Ordine automate pe IDM:</b> când gap-ul trece de un prag configurabil, plasează ordine pe piața intraday pentru a reveni pe poziție.</li><li><b>Sincronizare la ~10s:</b> deciziile țin cont de preț, lichiditate și timpul rămas până la livrare.</li><li><b>Obiectiv real:</b> minimizarea energiei de dezechilibru facturate de OTS (Transelectrica), nu doar volumul tranzacționat.</li><li><b>Ultim strat:</b> bateria poate absorbi diferența rămasă, ca tampon de echilibrare.</li></ul></div></div></div>
   <div class="sx-demo">Date demonstrative, pentru ilustrare.</div>
 </div></section>
 <!--/SX-->
@@ -3847,6 +3863,7 @@ strong{color:var(--text-1);font-weight:700;}
       </div>
     </div>
   </div>
+  <div class="sxdet-wrap"><button class="sxdet" aria-expanded="false"><i class="ri-arrow-right-s-line"></i>Cum funcționează</button><div class="sxdet-panel"><div><ul><li><b>Comandă directă prin SCADA:</b> trimiți un setpoint grid-centric (MW) — pozitiv = descărcare, negativ = încărcare.</li><li><b>Program 96×15min:</b> încărcare pe surplusul ieftin de prânz, descărcare în vârful de preț al serii (arbitraj).</li><li><b>Telemetrie live (~10s):</b> SoC, SoH și C-rate, monitorizate în timp real.</li><li><b>Calculat sau manual:</b> setpoint-urile sunt calculate față de preț și prognoză — sau le suprascrii manual, live.</li><li><b>Legat de echilibrare:</b> aceleași setpoint-uri alimentează strategia anti-dezechilibru.</li></ul></div></div></div>
   <div class="sx-demo">Date demonstrative, pentru ilustrare.</div>
 </div></section>
 <section class="sec sxwrap" id="s-compare"><div class="wrap">
@@ -4204,6 +4221,7 @@ strong{color:var(--text-1);font-weight:700;}
       en.textContent=(soc/100*51).toFixed(1)+' MWh';}
     set.addEventListener('input',()=>{soc=Math.max(8,Math.min(98,67-(+set.value)*0.35));render();});render();
   })();
+  (function(){document.querySelectorAll('.sxdet').forEach(function(btn){btn.addEventListener('click',function(){var p=btn.nextElementSibling;var open=p.classList.toggle('open');btn.classList.toggle('open',open);btn.setAttribute('aria-expanded',open);});});})();
 })();
 </script>
 <!--/SX-->
