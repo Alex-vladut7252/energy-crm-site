@@ -3761,8 +3761,8 @@ strong{color:var(--text-1);font-weight:700;}
   <div class="sx-demo">Date demonstrative, pentru ilustrare.</div>
 </div></section>
 <section class="sec sxwrap" id="s-idm"><div class="wrap">
-  <div class="sec-h"><span class="k">Echilibrare intraday</span><h2>Prognoza se schimbă. <span class="grad">Robotul te ține echilibrat.</span></h2>
-    <p>Auto-balancer-ul urmărește devierea față de poziția vândută și plasează ordine pe intraday — dezechilibrul, redus la zero.</p></div>
+  <div class="sec-h"><span class="k">Echilibrare intraday</span><h2>Prognoza se schimbă. <span class="grad">Auto-balancer-ul te ține pe poziție.</span></h2>
+    <p>Auto-balancer-ul urmărește abaterea față de poziția vândută și lucrează ordine pe piața intraday, aducând dezechilibrul aproape de zero.</p></div>
   <div class="card"><div class="cbar"><span class="t"><i class="ri-stock-line"></i>IDM Cockpit · auto-balancer</span><span class="rbot" id="idm-bot"><span class="bd"></span>Auto-balancer</span></div>
     <div class="idmb">
       <div class="idmk">
@@ -3813,7 +3813,7 @@ strong{color:var(--text-1);font-weight:700;}
     <div class="ss-cards">
       <div class="ss-card"><div class="ic" style="background:rgba(247,185,36,.12);border:1px solid rgba(247,185,36,.3);color:var(--amber)"><i class="ri-arrow-left-right-line"></i></div><h4>Arbitraj de preț</h4><p>Stochează energia când solarul de prânz inundă piața și prețurile scad — uneori sub zero — și o eliberează în vârful de seară, când fiecare MWh valorează cel mai mult.</p></div>
       <div class="ss-card"><div class="ic" style="background:rgba(34,211,160,.12);border:1px solid rgba(34,211,160,.3);color:var(--teal)"><i class="ri-shield-flash-line"></i></div><h4>Scut anti-dezechilibru</h4><p>Bateria absoarbe diferența dintre prognoză și realitate în timp real, astfel încât abaterile nu devin penalități de dezechilibru pe piața de echilibrare.</p></div>
-      <div class="ss-card"><div class="ic" style="background:rgba(77,139,255,.12);border:1px solid rgba(77,139,255,.3);color:var(--blue)"><i class="ri-battery-charge-line"></i></div><h4>Dispatch fără mâini</h4><p>Setpoint-urile de încărcare/descărcare sunt calculate față de preț și prognoză, apoi trimise direct către BESS prin SCADA — 96 de intervale pe zi, 24/7, fără operator.</p></div>
+      <div class="ss-card"><div class="ic" style="background:rgba(77,139,255,.12);border:1px solid rgba(77,139,255,.3);color:var(--blue)"><i class="ri-battery-charge-line"></i></div><h4>Dispatch fără operator</h4><p>Setpoint-urile de încărcare/descărcare sunt calculate față de preț și prognoză, apoi trimise direct către BESS prin SCADA — 96 de intervale pe zi, 24/7, fără operator.</p></div>
     </div>
   </div>
 </div></section>
@@ -3857,7 +3857,7 @@ strong{color:var(--text-1);font-weight:700;}
       <ul>
         <li><i class="ri-subtract-line"></i>Prognoze copiate manual din email-uri și fișiere Excel</li>
         <li><i class="ri-subtract-line"></i>Oferte DAM făcute de mână — risc de erori și deadline ratat</li>
-        <li><i class="ri-subtract-line"></i>Balansare intraday prin telefon, manual, cu întârziere</li>
+        <li><i class="ri-subtract-line"></i>Balansare intraday la telefon — lentă și cu întârziere</li>
         <li><i class="ri-subtract-line"></i>Notificări BRP trimise manual, cu risc de omisiune</li>
         <li><i class="ri-subtract-line"></i>Costuri de dezechilibru mari din reacție lentă</li>
         <li><i class="ri-subtract-line"></i>Nopțile și weekendul — nimeni nu urmărește piața</li>
@@ -4123,8 +4123,8 @@ strong{color:var(--text-1);font-weight:700;}
     <p>Conectare la sistemele activului și operare sigură, multi-tenant.</p></div>
   <div class="int-grid">
     <div class="int"><h4><i class="ri-router-line"></i>SCADA</h4><p>Conectare directă la centrală prin API per parc — date live (~10s) și control baterii.</p></div>
-    <div class="int"><h4><i class="ri-cloud-line"></i>Furnizori meteo</h4><p>Compatibil cu sursele de prognoză ale clientului, cu comparare automată de acuratețe.</p></div>
-    <div class="int"><h4><i class="ri-mail-settings-line"></i>Notificări BRP</h4><p>Trimitere automată cu template-uri Excel, confirmare și management al listei de suprimare.</p></div>
+    <div class="int"><h4><i class="ri-cloud-line"></i>Furnizori meteo</h4><p>Compatibil cu propriile surse meteo ale clientului, cu evaluarea automată a acurateței.</p></div>
+    <div class="int"><h4><i class="ri-mail-settings-line"></i>Notificări BRP</h4><p>Trimise automat din template-uri Excel, cu confirmare de livrare și gestionarea listei de suprimare.</p></div>
     <div class="int"><h4><i class="ri-shield-keyhole-line"></i>Securitate &amp; roluri</h4><p>SSL, 5 roluri predefinite și până la 33 de permisiuni configurabile per rol.</p></div>
     <div class="int"><h4><i class="ri-building-line"></i>Multi-tenant</h4><p>Izolare completă a datelor între companii, cu onboarding în secunde.</p></div>
     <div class="int"><h4><i class="ri-global-line"></i>6 piețe regionale</h4><p>O singură integrare pentru day-ahead și intraday în RO, BG, RS și UE.</p></div>
