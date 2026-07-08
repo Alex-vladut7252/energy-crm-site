@@ -3648,6 +3648,33 @@ strong{color:var(--text-1);font-weight:700;}
 @media(max-width:760px){.sxwrap .sx-cmp{grid-template-columns:1fr;}.sxwrap .sx-stats{grid-template-columns:1fr 1fr;}}
 </style>
 <!--/SX-->
+<style id="lf-styles">
+.lf-overlay{position:fixed;inset:0;z-index:99999;background:rgba(4,6,12,.74);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:1.2rem;opacity:0;animation:lf-in .22s ease forwards;}
+.lf-overlay[hidden]{display:none;}
+@keyframes lf-in{to{opacity:1;}}
+.lf-modal{position:relative;width:100%;max-width:440px;background:linear-gradient(180deg,#131a2e,#090d18);border:1px solid rgba(255,255,255,.14);border-radius:20px;box-shadow:0 40px 100px rgba(0,0,0,.6);padding:1.9rem 1.8rem;font-family:'Manrope',system-ui,sans-serif;max-height:94vh;overflow:auto;transform:translateY(8px);animation:lf-up .28s ease forwards;}
+@keyframes lf-up{to{transform:none;}}
+.lf-close{position:absolute;top:.9rem;right:1.05rem;background:none;border:none;color:rgba(244,246,251,.5);font-size:1.7rem;line-height:1;cursor:pointer;transition:.2s;}
+.lf-close:hover{color:#f4f6fb;}
+.lf-eyebrow{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#22d3a0;}
+.lf-modal h3{font-family:'Sora',system-ui,sans-serif;font-weight:800;font-size:1.5rem;color:#f4f6fb;margin:.45rem 0 .5rem;letter-spacing:-.01em;}
+.lf-sub{font-size:.92rem;color:rgba(244,246,251,.62);line-height:1.5;margin-bottom:1.35rem;}
+.lf-form{display:flex;flex-direction:column;gap:.8rem;}
+.lf-form[hidden],.lf-success[hidden]{display:none!important;}
+.lf-form label{display:flex;flex-direction:column;gap:.32rem;font-size:.74rem;font-weight:600;color:rgba(244,246,251,.68);font-family:'Sora',system-ui,sans-serif;}
+.lf-form input{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:11px;padding:.72rem .85rem;color:#f4f6fb;font-size:.95rem;font-family:'Manrope',system-ui,sans-serif;transition:.18s;}
+.lf-form input:focus{outline:none;border-color:#4d8bff;background:rgba(77,139,255,.07);box-shadow:0 0 0 3px rgba(77,139,255,.16);}
+.lf-form input::placeholder{color:rgba(244,246,251,.3);}
+.lf-hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0;}
+.lf-submit{margin-top:.5rem;background:linear-gradient(100deg,#4d8bff,#22d3a0);color:#05070d;font-family:'Sora',system-ui,sans-serif;font-weight:700;font-size:.98rem;border:none;border-radius:11px;padding:.85rem;cursor:pointer;transition:.18s;}
+.lf-submit:hover{filter:brightness(1.08);transform:translateY(-1px);}
+.lf-submit:disabled{opacity:.6;cursor:default;transform:none;filter:none;}
+.lf-note{font-size:.69rem;color:rgba(244,246,251,.4);text-align:center;margin-top:.2rem;line-height:1.45;}
+.lf-err{font-size:.8rem;color:#ff5d6c;text-align:center;min-height:1em;}
+.lf-success{text-align:center;padding:1.2rem .5rem;}
+.lf-success i{font-size:3.1rem;color:#22d3a0;line-height:1;}
+.lf-success p{font-size:.95rem;color:rgba(244,246,251,.64);margin-bottom:1.35rem;line-height:1.5;}
+</style>
 </head>
 <body>
 
@@ -3661,7 +3688,7 @@ strong{color:var(--text-1);font-weight:700;}
   </nav>
   <div class="nav-right">
     <div class="lang"><a href="product-ro.html">RO</a><a class="on" href="product-en.html">EN</a></div>
-    <a class="btn btn-p" href="#contact"><i class="ri-calendar-check-line"></i>Live demo</a>
+    <a class="btn btn-p" href="#" data-demo><i class="ri-calendar-check-line"></i>Live demo</a>
   </div>
 </div></header>
 
@@ -3673,8 +3700,8 @@ strong{color:var(--text-1);font-weight:700;}
     <h1>From asset control <span class="grad">to market profit.</span></h1>
     <p class="sub">Energy CRM controls <strong>solar parks</strong> and <strong>batteries</strong> through SCADA, then automatically sells every megawatt-hour on the <strong>day-ahead</strong> and <strong>intraday</strong> markets — charging on the cheap midday surplus, discharging at the evening peak, and keeping you balanced 24/7 to avoid imbalance costs.</p>
     <div class="hero-cta">
-      <a class="btn btn-p" href="#contact"><i class="ri-calendar-check-line"></i>Book a live demo</a>
-      <a class="btn btn-g" href="#journey"><i class="ri-play-circle-line"></i>See it in action</a>
+      <a class="btn btn-p" href="#" data-demo><i class="ri-calendar-check-line"></i>Book a live demo</a>
+      <a class="btn btn-g" href="#s-forecast"><i class="ri-play-circle-line"></i>See it in action</a>
     </div>
     <div class="hero-trust"><i class="ri-shield-check-line"></i>Authorized ISV for OPCOM (EPEX SPOT) &amp; BRM (Nord Pool)</div>
   </div>
@@ -4143,7 +4170,7 @@ strong{color:var(--text-1);font-weight:700;}
   <h2>See it live. Software in production, not promises.</h2>
   <p>Book a personalized demo of the Energy CRM platform and see the whole chain running — from asset control to market profit.</p>
   <div class="hero-cta">
-    <a class="btn btn-p" href="mailto:contact@progemisoft.com"><i class="ri-calendar-check-line"></i>Book a demo</a>
+    <a class="btn btn-p" href="#" data-demo><i class="ri-calendar-check-line"></i>Book a demo</a>
     <a class="btn btn-g" href="https://crm.progemisoft.com"><i class="ri-external-link-line"></i>crm.progemisoft.com</a>
   </div>
 </div></div></section>
@@ -4215,4 +4242,59 @@ strong{color:var(--text-1);font-weight:700;}
 })();
 </script>
 <!--/SX-->
+<!--LF-->
+<div class="lf-overlay" id="lf-overlay" hidden>
+  <div class="lf-modal" role="dialog" aria-modal="true" aria-labelledby="lf-title">
+    <button class="lf-close" id="lf-close" type="button" aria-label="Close">&times;</button>
+    <div class="lf-form-wrap" id="lf-form-wrap">
+      <span class="lf-eyebrow">LIVE DEMO</span>
+      <h3 id="lf-title">Book a live demo</h3>
+      <p class="lf-sub">Leave your details and we'll reach out shortly for a live demo of the Energy CRM platform.</p>
+      <form class="lf-form" id="lf-form" novalidate>
+        <label>Name<input type="text" name="Nume" required autocomplete="name" placeholder="Your name"></label>
+        <label>Phone<input type="tel" name="Telefon" required autocomplete="tel" placeholder="+40 7xx xxx xxx"></label>
+        <label>Email<input type="email" name="Email" required autocomplete="email" placeholder="name@company.com"></label>
+        <label>Company (optional)<input type="text" name="Companie" autocomplete="organization" placeholder="Solar park, trader, supplier…"></label>
+        <input class="lf-hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="hidden" name="_subject" value="New lead — Energy CRM demo (EN)">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="Sursa" value="EN page">
+        <div class="lf-err" id="lf-err"></div>
+        <button type="submit" class="lf-submit" id="lf-submit">Send request</button>
+        <p class="lf-note">Your details go straight to the Energy CRM team. We won't use them for anything else.</p>
+      </form>
+    </div>
+    <div class="lf-success" id="lf-success" hidden>
+      <i class="ri-checkbox-circle-line"></i>
+      <h3>Thank you!</h3>
+      <p>We've received your request — we'll be in touch shortly for your demo.</p>
+      <button class="lf-submit" id="lf-done" type="button">Close</button>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var ov=document.getElementById('lf-overlay');if(!ov)return;
+  var wrap=document.getElementById('lf-form-wrap'),succ=document.getElementById('lf-success'),
+      form=document.getElementById('lf-form'),btn=document.getElementById('lf-submit'),err=document.getElementById('lf-err');
+  function open(e){if(e)e.preventDefault();ov.hidden=false;document.body.style.overflow='hidden';setTimeout(function(){var i=form.querySelector('input');if(i)i.focus();},60);}
+  function close(){ov.hidden=true;document.body.style.overflow='';}
+  [].forEach.call(document.querySelectorAll('[data-demo]'),function(b){b.addEventListener('click',open);});
+  document.getElementById('lf-close').addEventListener('click',close);
+  document.getElementById('lf-done').addEventListener('click',close);
+  ov.addEventListener('click',function(e){if(e.target===ov)close();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!ov.hidden)close();});
+  form.addEventListener('submit',function(e){
+    e.preventDefault();err.textContent='';
+    if(!form.checkValidity()){form.reportValidity&&form.reportValidity();return;}
+    btn.disabled=true;btn.textContent="Sending…";
+    fetch('https://formsubmit.co/ajax/contact@progemisoft.com',{method:'POST',headers:{'Accept':'application/json'},body:new FormData(form)})
+      .then(function(r){return r.json();})
+      .then(function(d){wrap.hidden=true;succ.hidden=false;})
+      .catch(function(){btn.disabled=false;btn.textContent="Send request";err.textContent="Something went wrong. Please try again or email us at contact@progemisoft.com.";});
+  });
+})();
+</script>
+<!--/LF-->
 </body></html>

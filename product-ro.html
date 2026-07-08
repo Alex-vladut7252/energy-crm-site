@@ -3648,6 +3648,33 @@ strong{color:var(--text-1);font-weight:700;}
 @media(max-width:760px){.sxwrap .sx-cmp{grid-template-columns:1fr;}.sxwrap .sx-stats{grid-template-columns:1fr 1fr;}}
 </style>
 <!--/SX-->
+<style id="lf-styles">
+.lf-overlay{position:fixed;inset:0;z-index:99999;background:rgba(4,6,12,.74);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:1.2rem;opacity:0;animation:lf-in .22s ease forwards;}
+.lf-overlay[hidden]{display:none;}
+@keyframes lf-in{to{opacity:1;}}
+.lf-modal{position:relative;width:100%;max-width:440px;background:linear-gradient(180deg,#131a2e,#090d18);border:1px solid rgba(255,255,255,.14);border-radius:20px;box-shadow:0 40px 100px rgba(0,0,0,.6);padding:1.9rem 1.8rem;font-family:'Manrope',system-ui,sans-serif;max-height:94vh;overflow:auto;transform:translateY(8px);animation:lf-up .28s ease forwards;}
+@keyframes lf-up{to{transform:none;}}
+.lf-close{position:absolute;top:.9rem;right:1.05rem;background:none;border:none;color:rgba(244,246,251,.5);font-size:1.7rem;line-height:1;cursor:pointer;transition:.2s;}
+.lf-close:hover{color:#f4f6fb;}
+.lf-eyebrow{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:#22d3a0;}
+.lf-modal h3{font-family:'Sora',system-ui,sans-serif;font-weight:800;font-size:1.5rem;color:#f4f6fb;margin:.45rem 0 .5rem;letter-spacing:-.01em;}
+.lf-sub{font-size:.92rem;color:rgba(244,246,251,.62);line-height:1.5;margin-bottom:1.35rem;}
+.lf-form{display:flex;flex-direction:column;gap:.8rem;}
+.lf-form[hidden],.lf-success[hidden]{display:none!important;}
+.lf-form label{display:flex;flex-direction:column;gap:.32rem;font-size:.74rem;font-weight:600;color:rgba(244,246,251,.68);font-family:'Sora',system-ui,sans-serif;}
+.lf-form input{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.12);border-radius:11px;padding:.72rem .85rem;color:#f4f6fb;font-size:.95rem;font-family:'Manrope',system-ui,sans-serif;transition:.18s;}
+.lf-form input:focus{outline:none;border-color:#4d8bff;background:rgba(77,139,255,.07);box-shadow:0 0 0 3px rgba(77,139,255,.16);}
+.lf-form input::placeholder{color:rgba(244,246,251,.3);}
+.lf-hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;opacity:0;}
+.lf-submit{margin-top:.5rem;background:linear-gradient(100deg,#4d8bff,#22d3a0);color:#05070d;font-family:'Sora',system-ui,sans-serif;font-weight:700;font-size:.98rem;border:none;border-radius:11px;padding:.85rem;cursor:pointer;transition:.18s;}
+.lf-submit:hover{filter:brightness(1.08);transform:translateY(-1px);}
+.lf-submit:disabled{opacity:.6;cursor:default;transform:none;filter:none;}
+.lf-note{font-size:.69rem;color:rgba(244,246,251,.4);text-align:center;margin-top:.2rem;line-height:1.45;}
+.lf-err{font-size:.8rem;color:#ff5d6c;text-align:center;min-height:1em;}
+.lf-success{text-align:center;padding:1.2rem .5rem;}
+.lf-success i{font-size:3.1rem;color:#22d3a0;line-height:1;}
+.lf-success p{font-size:.95rem;color:rgba(244,246,251,.64);margin-bottom:1.35rem;line-height:1.5;}
+</style>
 </head>
 <body>
 
@@ -3661,7 +3688,7 @@ strong{color:var(--text-1);font-weight:700;}
   </nav>
   <div class="nav-right">
     <div class="lang"><a class="on" href="product-ro.html">RO</a><a href="product-en.html">EN</a></div>
-    <a class="btn btn-p" href="#contact"><i class="ri-calendar-check-line"></i>Demo live</a>
+    <a class="btn btn-p" href="#" data-demo><i class="ri-calendar-check-line"></i>Demo live</a>
   </div>
 </div></header>
 
@@ -3673,8 +3700,8 @@ strong{color:var(--text-1);font-weight:700;}
     <h1>De la control activ <span class="grad">la profit pe piață.</span></h1>
     <p class="sub">Energy CRM controlează <strong>parcurile solare</strong> și <strong>bateriile</strong> prin SCADA, apoi vinde automat fiecare megawatt-oră pe piețele <strong>day-ahead</strong> și <strong>intraday</strong> — încărcând pe surplusul ieftin de la prânz, descărcând în vârful de seară și menținându-ți poziția echilibrată 24/7 pentru a evita costurile de dezechilibru.</p>
     <div class="hero-cta">
-      <a class="btn btn-p" href="#contact"><i class="ri-calendar-check-line"></i>Programează un demo live</a>
-      <a class="btn btn-g" href="#journey"><i class="ri-play-circle-line"></i>Vezi-l în acțiune</a>
+      <a class="btn btn-p" href="#" data-demo><i class="ri-calendar-check-line"></i>Programează un demo live</a>
+      <a class="btn btn-g" href="#s-forecast"><i class="ri-play-circle-line"></i>Vezi-l în acțiune</a>
     </div>
     <div class="hero-trust"><i class="ri-shield-check-line"></i>ISV autorizat OPCOM (EPEX SPOT) &amp; BRM (Nord Pool)</div>
   </div>
@@ -4143,7 +4170,7 @@ strong{color:var(--text-1);font-weight:700;}
   <h2>Vezi-l live. Software în producție, nu promisiuni.</h2>
   <p>Programează o demonstrație personalizată a platformei Energy CRM și vezi tot lanțul rulând — de la control activ la profit pe piață.</p>
   <div class="hero-cta">
-    <a class="btn btn-p" href="mailto:contact@progemisoft.com"><i class="ri-calendar-check-line"></i>Programează un demo</a>
+    <a class="btn btn-p" href="#" data-demo><i class="ri-calendar-check-line"></i>Programează un demo</a>
     <a class="btn btn-g" href="https://crm.progemisoft.com"><i class="ri-external-link-line"></i>crm.progemisoft.com</a>
   </div>
 </div></div></section>
@@ -4215,4 +4242,59 @@ strong{color:var(--text-1);font-weight:700;}
 })();
 </script>
 <!--/SX-->
+<!--LF-->
+<div class="lf-overlay" id="lf-overlay" hidden>
+  <div class="lf-modal" role="dialog" aria-modal="true" aria-labelledby="lf-title">
+    <button class="lf-close" id="lf-close" type="button" aria-label="Închide">&times;</button>
+    <div class="lf-form-wrap" id="lf-form-wrap">
+      <span class="lf-eyebrow">DEMO LIVE</span>
+      <h3 id="lf-title">Programează un demo</h3>
+      <p class="lf-sub">Lasă-ne datele și te contactăm rapid pentru un demo live al platformei Energy CRM.</p>
+      <form class="lf-form" id="lf-form" novalidate>
+        <label>Nume<input type="text" name="Nume" required autocomplete="name" placeholder="Numele tău"></label>
+        <label>Telefon<input type="tel" name="Telefon" required autocomplete="tel" placeholder="07xx xxx xxx"></label>
+        <label>Email<input type="email" name="Email" required autocomplete="email" placeholder="nume@companie.ro"></label>
+        <label>Companie (opțional)<input type="text" name="Companie" autocomplete="organization" placeholder="Parc solar, trader, furnizor…"></label>
+        <input class="lf-hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <input type="hidden" name="_subject" value="Lead nou — demo Energy CRM (RO)">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="Sursa" value="Pagina RO">
+        <div class="lf-err" id="lf-err"></div>
+        <button type="submit" class="lf-submit" id="lf-submit">Trimite cererea</button>
+        <p class="lf-note">Datele tale ajung direct la echipa Energy CRM. Nu le folosim în alt scop.</p>
+      </form>
+    </div>
+    <div class="lf-success" id="lf-success" hidden>
+      <i class="ri-checkbox-circle-line"></i>
+      <h3>Mulțumim!</h3>
+      <p>Am primit cererea ta — te contactăm cât de curând pentru demo.</p>
+      <button class="lf-submit" id="lf-done" type="button">Închide</button>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var ov=document.getElementById('lf-overlay');if(!ov)return;
+  var wrap=document.getElementById('lf-form-wrap'),succ=document.getElementById('lf-success'),
+      form=document.getElementById('lf-form'),btn=document.getElementById('lf-submit'),err=document.getElementById('lf-err');
+  function open(e){if(e)e.preventDefault();ov.hidden=false;document.body.style.overflow='hidden';setTimeout(function(){var i=form.querySelector('input');if(i)i.focus();},60);}
+  function close(){ov.hidden=true;document.body.style.overflow='';}
+  [].forEach.call(document.querySelectorAll('[data-demo]'),function(b){b.addEventListener('click',open);});
+  document.getElementById('lf-close').addEventListener('click',close);
+  document.getElementById('lf-done').addEventListener('click',close);
+  ov.addEventListener('click',function(e){if(e.target===ov)close();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!ov.hidden)close();});
+  form.addEventListener('submit',function(e){
+    e.preventDefault();err.textContent='';
+    if(!form.checkValidity()){form.reportValidity&&form.reportValidity();return;}
+    btn.disabled=true;btn.textContent="Se trimite…";
+    fetch('https://formsubmit.co/ajax/contact@progemisoft.com',{method:'POST',headers:{'Accept':'application/json'},body:new FormData(form)})
+      .then(function(r){return r.json();})
+      .then(function(d){wrap.hidden=true;succ.hidden=false;})
+      .catch(function(){btn.disabled=false;btn.textContent="Trimite cererea";err.textContent="A apărut o eroare. Încearcă din nou sau scrie-ne la contact@progemisoft.com.";});
+  });
+})();
+</script>
+<!--/LF-->
 </body></html>
